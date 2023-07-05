@@ -1,0 +1,17 @@
+export const GET_ALL_NFT = 'get_all_nft';
+export const GET_ALL_NFT_SUCCESS = 'get_all_nft_success';
+export const GET_ALL_NFT_FOR_BUNCH_MINT = 'get_all_nft_for_bunch_mint';
+export const GET_ALL_NFT_FOR_BUNCH_MINT_SUCCESS = 'get_all_nft_for_bunch_mint_success';
+export const GET_ALL_NFT_FOR_BUNCH_TRANSFER = 'get_all_nft_for_bunch_transfer';
+export const GET_ALL_NFT_FOR_BUNCH_TRANSFER_SUCCESS = 'get_all_nft_for_bunch_transfer_success';
+export const GET_ALL_NFT_FOR_BUNCH_LISTING = 'get_all_nft_for_bunch_listing';
+export const GET_ALL_NFT_FOR_BUNCH_LISTING_SUCCESS = 'get_all_nft_for_bunch_listing_success';
+export const ADD_NFT = 'add_nft';
+export const UPDATE_NFT = 'update_nft';
+export const DELETE_NFT = 'delete_nft';
+export const MINT_NFT = 'mint_nft';
+export const LAZY_MINT_NFT = 'lazy_mint_nft';
+export const CHANGE_STATUS = 'change_status';
+export const TRANSFER_NFT = 'transfer_nft';
+export const LIST_NFT_ON_MARKETPLACE = 'list_nft_on_marketplace';
+export const CHANGE_STATUS_IN_MARKETPLACE = 'change_status_in_marketplace';

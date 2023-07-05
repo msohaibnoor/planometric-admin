@@ -1,0 +1,540 @@
+// color variants
+@import 'themes-vars.module.scss';
+
+// third-party
+@import '~react-perfect-scrollbar/dist/css/styles.css';
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+// ==============================|| LIGHT BOX ||============================== //
+.slick-arrow:before {
+    color: $grey500;
+}
+
+// ==============================|| LIGHT BOX ||============================== //
+.fullscreen .react-images__blanket {
+    z-index: 1200;
+}
+
+// ==============================|| APEXCHART ||============================== //
+
+.apexcharts-legend-series .apexcharts-legend-marker {
+    margin-right: 8px;
+}
+
+// ==============================|| PERFECT SCROLLBAR ||============================== //
+
+.scrollbar-container {
+    .ps__rail-y {
+        &:hover > .ps__thumb-y,
+        &:focus > .ps__thumb-y,
+        &.ps--clicking .ps__thumb-y {
+            background-color: $grey500;
+            width: 5px;
+        }
+    }
+
+    .ps__thumb-y {
+        background-color: $grey500;
+        border-radius: 6px;
+        width: 5px;
+        right: 0;
+    }
+}
+
+.scrollbar-container.ps,
+.scrollbar-container > .ps {
+    &.ps--active-y > .ps__rail-y {
+        width: 5px;
+        background-color: transparent !important;
+        z-index: 999;
+
+        &:hover,
+        &.ps--clicking {
+            width: 5px;
+            background-color: transparent;
+        }
+    }
+
+    &.ps--scrolling-y > .ps__rail-y,
+    &.ps--scrolling-x > .ps__rail-x {
+        opacity: 0.4;
+        background-color: transparent;
+    }
+}
+
+// ==============================|| ANIMATION KEYFRAMES ||============================== //
+
+@keyframes wings {
+    50% {
+        transform: translateY(-40px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    53%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        transform: translateZ(0);
+    }
+
+    40%,
+    43% {
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        transform: translate3d(0, -5px, 0);
+    }
+
+    70% {
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        transform: translate3d(0, -7px, 0);
+    }
+
+    80% {
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        transform: translateZ(0);
+    }
+
+    90% {
+        transform: translate3d(0, -2px, 0);
+    }
+}
+
+@keyframes slideY {
+    0%,
+    50%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    25% {
+        transform: translateY(-10px);
+    }
+
+    75% {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes slideX {
+    0%,
+    50%,
+    100% {
+        transform: translateX(0px);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+.border {
+    border: 1px solid #616161;
+    border-radius: 10px;
+    padding: 16px;
+
+    &:hover {
+        border: 1px solid #212121;
+    }
+}
+
+.boxSelected {
+    border-color: #2196f3;
+    background: #e8f4fd;
+}
+
+.responsiveDialog {
+    z-index: 2000;
+
+    .MuiDialog-paper {
+        width: 100%;
+        max-height: 435px;
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        .MuiDialog-paper {
+            width: 100%;
+            max-height: 435px;
+        }
+    }
+}
+
+#menu- {
+    z-index: 3000;
+    ul {
+        height: 200px;
+        overflow-y: scroll;
+    }
+}
+
+.brandDialog {
+    .MuiDialog-paper {
+        width: 100%;
+        max-height: 570px;
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        .MuiDialog-paper {
+            width: 100%;
+            max-height: 530px;
+        }
+    }
+}
+
+.responsiveSelectfield {
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        .css-1ku04m1-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+            width: '50%';
+        }
+    }
+}
+
+.customLetterChip {
+    margin: 3px 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.skillLetterChip {
+    margin: 3px 0px;
+    font-size: 14px;
+}
+.chooseFileInput {
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    padding: 10px;
+    background-color: #fafafa;
+    border-radius: 12px;
+    position: relative;
+
+    &::before {
+        border-bottom: none;
+    }
+
+    &::after {
+        border-bottom: none;
+    }
+
+    &:focused {
+        border-bottom: none;
+    }
+
+    &:hover {
+        &:not(.Mui-disabled) {
+            &:before {
+                border-bottom: none;
+            }
+        }
+    }
+}
+.uploadIcon {
+    position: absolute;
+    top: 109px;
+    left: 64px;
+}
+
+.fileError {
+    color: #f44336;
+    margin-left: 70px;
+    margin-top: -12px;
+}
+.chooseFileError {
+    color: #f44336;
+    margin-left: 120px;
+    margin-top: -12px;
+}
+
+.questionForm {
+    width: 100%;
+    padding: 10px 15px 10px;
+}
+
+.displayFlex {
+    display: flex;
+    overflow: hidden;
+}
+.displayText {
+    white-space: nowrap;
+    /* width: 100px; */
+    overflow: hidden;
+}
+.audioPlayer {
+    width: 250px;
+    height: 44px;
+    margin: 2px 2px 2px 0px;
+}
+.questionCardContent {
+    padding-bottom: 0px !important;
+}
+.viewAudioPlayer {
+    width: 100%;
+    height: 44px;
+    margin: 2px 2px 2px 0px;
+}
+.optionImageContainer {
+    border: 1px solid;
+    border-color: #90caf975;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 10px;
+    height: 325px;
+}
+.selectedOptionImageContainer {
+    position: relative;
+    border: 1px solid;
+    border-color: #90caf975;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 10px;
+}
+.radioGroupDesign {
+    position: absolute;
+    top: -1px;
+}
+.imageSize {
+    width: 100%;
+    height: 300px;
+}
+.letterStyle {
+    margin-left: 3px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #212121;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.75;
+    text-align: left;
+}
+.letterSize {
+    font-size: 20px;
+}
+.exportExcel {
+    background: cadetblue !important;
+    font-size: 12px !important;
+    border-radius: 8px !important;
+    padding: 14px !important;
+    cursor: pointer;
+}
+.selectField {
+    .css-1fmjr7l-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+        padding: 11px 14px;
+    }
+    .MuiOutlinedInput-root{
+        height: 40px;
+    }
+}
+
+.dropZone {
+    outline: none;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #f3fafc;
+    border: 1px dashed black;
+    &:hover {
+        opacity: 0.72;
+        cursor: 'pointer';
+    }
+}
+
+.dropZoneContainer {
+    color: #2e2929;
+    border: 1px solid #108daa;
+    padding: 24px 28px;
+    background-color: #f3fafc;
+    border-radius: 6px;
+
+    & .css-8m9ipk-MuiTypography-root {
+        white-space: 'nowrap';
+        width: '360px';
+        overflow: 'hidden';
+        text-overflow: 'ellipsis';
+    }
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        padding: '10px';
+        & .css-8m9ipk-MuiTypography-root {
+            white-space: 'nowrap';
+            width: '166px';
+            overflow: 'hidden';
+            text-overflow: 'ellipsis';
+        }
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        padding: '10px';
+        & .css-8m9ipk-MuiTypography-root {
+            white-space: 'nowrap';
+            width: '360px';
+            overflow: 'hidden';
+            text-overflow: 'ellipsis';
+        }
+    }
+}
+
+.isDragActive {
+    opacity: 0.72;
+}
+.isDragReject {
+    color: black;
+    border-color: black;
+    background-color: #f3fafc;
+}
+
+.list {
+    margin: 12px;
+}
+.listItem {
+    border: solid 1px rgba(145, 158, 171, 0.24);
+    margin: 8px 0px;
+    padding: 4px 16px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+.quantityField {
+    width: 100px;
+    & .css-4pzdr3-MuiInputBase-input-MuiOutlinedInput-input {
+        height: 0.8375em;
+    }
+}
+.css-169iwlq-MuiCalendarPicker-root {
+    max-height: 270px !important;
+}
+.css-1984sxt-MuiCardMedia-root {
+    background: grey;
+}
+.css-1arijsr-MuiSnackbar-root {
+    z-index: 2400;
+}
+.customScroller {
+    max-height: 150px;
+    width: 270px;
+    overflow-y: scroll;
+    label {
+        width: 250px;
+    }
+}
+.css-1nvdc5e-MuiCardHeader-root {
+    padding: 14px 20px 14px 20px !important;
+}
+.customCheckBox {
+    position: absolute;
+    .css-i4bv87-MuiSvgIcon-root {
+        fill: #f3fafc !important;
+    }
+}
+.customLink {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.nftTypeFilter {
+    .MuiFormGroup-root{
+        flex-direction: column;
+    }
+}
+.nftCardMoreHorizIcon{
+    background-color: white;
+    border-radius: 50%;
+}
+.custom-checkbox {
+    -webkit-appearance: none;
+    // background-color: rgba(255, 255, 255, 0.1);
+    background-color: white;
+    padding: 8px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    border: 1px solid black;
+    position: absolute;
+    margin-left: 10px;
+    // cursor: pointer;
+}
+
+.custom-checkbox:checked {
+     background-color: rgba(17, 97, 237, 1);
+    // background-color: black;
+    border: 1px solid rgba(17, 97, 237, 1);
+
+}
+
+.custom-checkbox:checked:after {
+    content: '\2714';
+    font-size: 10px;
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    color: #fff;
+}
+
+.custom-checkbox:focus {
+    outline: none;
+}
+
+// Actions
+.actionItem{
+    display: flex;
+    // padding: 5px;
+    // background-color: #f3f3f3;
+    width: 100%;
+    margin-bottom: 2px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    img{
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    svg{
+        // margin-right: 3px;
+    }
+}
+.customMenuClass{
+    .MuiPaper-root{
+        box-shadow: none !important;
+        border: 1px solid #ede8e8;
+        ul{
+            li{
+                padding: 0 10px 0 10px;
+            }
+        }
+    }
+}
+.userActiveContainer{
+    display: flex;
+        align-items: center;
+        gap: 5px;
+        .activeDot{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #1bd31b;
+        }
+}
+.customOutlinedInput{
+    .MuiOutlinedInput-root{
+        height: 40px;
+    }
+    .MuiOutlinedInput-input{
+        // height: 40px;
+    }
+}

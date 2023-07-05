@@ -1,0 +1,9 @@
+export const GET_ALL_EVENTS = 'get_all_events';
+export const GET_ALL_EVENTS_SUCCESS = 'get_all_events_success';
+export const DELETE_EVENT = 'delete_event';
+export const ADD_EVENT = 'add_event';
+export const UPDATE_EVENT = 'update_event';
+export const CHANGE_EVENT_STATUS = 'change_event_status';
+export const ADD_THEATER_CONTENT = 'add_theater_content';
+export const GET_THEATER_CONTENT = 'get_theater_content';
+export const GET_THEATER_CONTENT_SUCCESS = 'get_theater_content_success';
