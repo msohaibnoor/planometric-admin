@@ -1,9 +1,9 @@
 import {
     GET_ALL_MUNICIPALITIES,
     GET_ALL_MUNICIPALITIES_SUCCESS,
-    DELETE_USER,
+    DELETE_MUNICIPALITY,
     ADD_GUEST_USER,
-    ADD_RESTRICTED_USER,
+    ADD_MUNICIPALITy,
     CHANGE_USER_STATUS
 } from './constants';
 
@@ -21,9 +21,9 @@ export const getAllMunicipalitiesSuccess = (data) => {
     };
 };
 
-export const deleteUser = (data) => {
+export const deleteMunicipality = (data) => {
     return {
-        type: DELETE_USER,
+        type: DELETE_MUNICIPALITY,
         payload: data
     };
 };
@@ -45,6 +45,12 @@ export const addRestrictedUser = (data) => {
 export const changeUserStatus = (data) => {
     return {
         type: CHANGE_USER_STATUS,
+        payload: data
+    };
+};
+export const addMunicipality = (data) => {
+    return {
+        type: ADD_MUNICIPALITy,
         payload: data
     };
 };

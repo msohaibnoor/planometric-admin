@@ -14,12 +14,13 @@ const index = () => {
         name="walletAddress"
         label="Select script"
         type='file'
-                            // value={formik.values.walletAddress}
-                            // onChange={formik.handleChange}
-                            // error={formik.touched.walletAddress && Boolean(formik.errors.walletAddress)}
-                            // helperText={formik.touched.walletAddress && formik.errors.walletAddress}
-                            // fullWidth
-                            autoComplete="given-name"
+        // value={formik.values.walletAddress}
+        // onChange={formik.handleChange}
+        // error={formik.touched.walletAddress && Boolean(formik.errors.walletAddress)}
+        // helperText={formik.touched.walletAddress && formik.errors.walletAddress}
+        // fullWidth
+        autoComplete="given-name"
+        focused={true}
       />
       <div>
 

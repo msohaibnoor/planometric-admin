@@ -7,9 +7,9 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Dialo
 import { FormattedMessage } from 'react-intl';
 // animation
 const Transition = forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
-import { deleteUser } from '../../../../redux/users/actions';
+import { deleteMunicipality } from '../../../../redux/municipalities/actions';
 
-export default function DeleteUserDialog({ open, setOpen, userId, page, limit, search,type }) {
+export default function DeleteUserDialog({ open, setOpen, userId, page, limit, search, type }) {
     const theme = useTheme();
     const dispatch = useDispatch();
     const handleClose = () => {
@@ -46,13 +46,13 @@ export default function DeleteUserDialog({ open, setOpen, userId, page, limit, s
                         size="small"
                         onClick={() => {
                             dispatch(
-                                deleteUser({
+                                deleteMunicipality({
                                     id: userId,
                                     handleClose: handleClose,
                                     page: page,
                                     limit: limit,
                                     search: search,
-                                    type:type
+                                    type: type
                                 })
                             );
                         }}

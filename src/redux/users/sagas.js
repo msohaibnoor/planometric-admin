@@ -40,10 +40,9 @@ function* getAllUsersRequest({ payload }) {
         //     `admin/users/get?size=${payload.limit}&page=${payload.page}&search=${payload.search}&type=${payload.type}`,
         //     headers
         // );
-        const response = yield axios.get(
-            `admin/users`,
-            headers
-        );
+        const response = yield axios.get(`admin/users?search=${payload.search}`, headers);
+        console.log('resssssssssss');
+        console.log(response);
         yield put(getAllUsersSuccess(response.data.data));
     } catch (error) {
         yield sagaErrorHandler(error.response.data.data);
@@ -83,7 +82,7 @@ export function* watchAddGuestUser() {
 function* deleteUserRequest({ payload }) {
     try {
         const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
-        const response = yield axios.delete(`/admin/users/delete/${payload.id}`, headers);
+        const { data } = yield axios.delete(`/admin/users/delete/${payload.id}`, headers);
         yield put(
             getAllUsers({
                 search: payload.search,
@@ -93,8 +92,10 @@ function* deleteUserRequest({ payload }) {
             })
         );
         payload.handleClose();
-        yield SetNotification('success', response.data.message);
+        console.log(data);
+        yield SetNotification('success', data.data.message);
     } catch (error) {
+        console.log(error);
         yield sagaErrorHandler(error.response.data.data);
     }
 }

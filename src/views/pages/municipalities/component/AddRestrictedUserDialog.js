@@ -11,32 +11,35 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, TextF
 // animation
 const Transition = forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
-import { addRestrictedUser } from '../../../../redux/users/actions';
+import { addMunicipality } from '../../../../redux/municipalities/actions';
 
-export default function AddRestrictedUserDialog({ open, setOpen,page,limit,search, type}) {
+export default function AddRestrictedUserDialog({ open, setOpen, page, limit, search, type }) {
     const theme = useTheme();
     const dispatch = useDispatch();
 
     const validationSchema = Yup.object({
-        walletAddress: Yup.string().required('Wallet Address is required!').min(42,"Invalid Wallet Address").max(42,"Invalid Wallet Address")
+        state: Yup.string().required('State Address is required!'),
+        // .min(42, 'Invalid Wallet Address')
+        // .max(42, 'Invalid Wallet Address'),
+        name: Yup.string().required('Name is required!')
     });
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            walletAddress: ''
+            state: '',
+            name: ''
         },
         validationSchema,
         onSubmit: (values) => {
-         
             dispatch(
-                addRestrictedUser({
-                    walletAddress: values.walletAddress,
+                addMunicipality({
+                    state: values.state,
+                    name: values.name,
                     search: search,
                     page: page,
                     limit: limit,
-                    type:type,
-                    handleClose: handleClose,
-                    
+                    type: type,
+                    handleClose: handleClose
                 })
             );
         }
@@ -62,25 +65,25 @@ export default function AddRestrictedUserDialog({ open, setOpen,page,limit,searc
                     <form autoComplete="off" onSubmit={formik.handleSubmit}>
                         <TextField
                             sx={{ marginTop: '25px' }}
-                            id="walletAddress"
-                            name="walletAddress"
+                            id="state"
+                            name="state"
                             label="State"
-                            value={formik.values.walletAddress}
+                            value={formik.values.state}
                             onChange={formik.handleChange}
-                            error={formik.touched.walletAddress && Boolean(formik.errors.walletAddress)}
-                            helperText={formik.touched.walletAddress && formik.errors.walletAddress}
+                            error={formik.touched.state && Boolean(formik.errors.state)}
+                            helperText={formik.touched.state && formik.errors.state}
                             fullWidth
                             autoComplete="given-name"
                         />
-                          <TextField
+                        <TextField
                             sx={{ marginTop: '25px' }}
-                            id="walletAddress"
-                            name="walletAddress"
+                            id="name"
+                            name="name"
                             label="Municipality"
-                            value={formik.values.walletAddress}
+                            value={formik.values.name}
                             onChange={formik.handleChange}
-                            error={formik.touched.walletAddress && Boolean(formik.errors.walletAddress)}
-                            helperText={formik.touched.walletAddress && formik.errors.walletAddress}
+                            error={formik.touched.name && Boolean(formik.errors.name)}
+                            helperText={formik.touched.name && formik.errors.name}
                             fullWidth
                             autoComplete="given-name"
                         />

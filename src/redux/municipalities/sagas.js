@@ -2,8 +2,16 @@ import axios from 'utils/axios';
 import { all, call, fork, put, retry, takeLatest, select } from 'redux-saga/effects';
 import { sagaErrorHandler } from 'shared/helperMethods/sagaErrorHandler';
 import { makeSelectAuthToken } from '../../shared/helperMethods/Selectors';
-import { getAllMunicipalitiesSuccess } from './actions';
-import { GET_ALL_MUNICIPALITIES, ADD_GUEST_USER, DELETE_USER, CHANGE_USER_STATUS, ADD_RESTRICTED_USER } from './constants';
+import { deleteMunicipality, getAllMunicipalitiesSuccess, getAllMunicipalities } from './actions';
+import {
+    GET_ALL_MUNICIPALITIES,
+    ADD_GUEST_USER,
+    DELETE_USER,
+    DELETE_MUNICIPALITY,
+    CHANGE_USER_STATUS,
+    ADD_RESTRICTED_USER,
+    ADD_MUNICIPALITy
+} from './constants';
 import { SetNotification } from 'shared/helperMethods/setNotification';
 
 function* addRestrictedUserRequest({ payload }) {
@@ -40,10 +48,7 @@ function* getAllMunicipalitiesRequest({ payload }) {
         //     `admin/users/get?size=${payload.limit}&page=${payload.page}&search=${payload.search}&type=${payload.type}`,
         //     headers
         // );
-        const response = yield axios.get(
-            `admin/municipalities`,
-            headers
-        );
+        const response = yield axios.get(`admin/municipalities`, headers);
         yield put(getAllMunicipalitiesSuccess(response.data.data));
     } catch (error) {
         yield sagaErrorHandler(error.response.data.data);
@@ -75,17 +80,16 @@ function* addGuestUserRequest({ payload }) {
         yield sagaErrorHandler(error.response.data.data);
     }
 }
-
-export function* watchAddGuestUser() {
-    yield takeLatest(ADD_GUEST_USER, addGuestUserRequest);
-}
-
-function* deleteUserRequest({ payload }) {
+function* addMunicipalityRequest({ payload }) {
+    let data = {
+        name: payload.name,
+        state: payload.state
+    };
     try {
         const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
-        const response = yield axios.delete(`/admin/users/delete/${payload.id}`, headers);
+        const response = yield axios.post(`admin/municipalities/add`, data, headers);
         yield put(
-            getAllUsers({
+            getAllMunicipalities({
                 search: payload.search,
                 page: payload.page,
                 limit: payload.limit,
@@ -99,8 +103,34 @@ function* deleteUserRequest({ payload }) {
     }
 }
 
-export function* watchDeleteUser() {
-    yield takeLatest(DELETE_USER, deleteUserRequest);
+export function* watchAddGuestUser() {
+    yield takeLatest(ADD_GUEST_USER, addGuestUserRequest);
+}
+export function* watchAddMunicipality() {
+    yield takeLatest(ADD_MUNICIPALITy, addMunicipalityRequest);
+}
+
+function* deleteMunicipalityRequest({ payload }) {
+    try {
+        const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
+        const response = yield axios.delete(`/admin/municipalities/delete/${payload.id}`, headers);
+        yield put(
+            getAllMunicipalities({
+                search: payload.search,
+                page: payload.page,
+                limit: payload.limit,
+                type: payload.type
+            })
+        );
+        payload.handleClose();
+        yield SetNotification('success', response.data.message);
+    } catch (error) {
+        yield sagaErrorHandler(error.response.data.data);
+    }
+}
+
+export function* watchDeleteMunicipality() {
+    yield takeLatest(DELETE_MUNICIPALITY, deleteMunicipalityRequest);
 }
 
 function* changeStatusRequest({ payload }) {
@@ -129,8 +159,9 @@ export default function* usersSaga() {
     yield all([
         fork(watchGetAllMunicipalities),
         fork(watchAddGuestUser),
-        fork(watchDeleteUser),
+        fork(watchDeleteMunicipality),
         fork(watchChangeStatus),
-        fork(watchAddRestrictedUser)
+        fork(watchAddRestrictedUser),
+        fork(watchAddMunicipality)
     ]);
 }
