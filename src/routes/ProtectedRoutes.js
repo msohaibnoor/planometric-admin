@@ -8,7 +8,11 @@ import SuperAdminGuard from './AuthGaurd';
 const SuperAdminDashboard = Loadable(lazy(() => import('views/pages/dashboard')));
 const Users = Loadable(lazy(() => import('views/pages/users')));
 const Municipalities = Loadable(lazy(() => import('views/pages/municipalities')));
+const Rhino = Loadable(lazy(() => import('views/pages/rhino')));
 const Grasshopper = Loadable(lazy(() => import('views/pages/grasshopper')));
+const Plants = Loadable(lazy(() => import('views/pages/plants')));
+const Testimonials = Loadable(lazy(() => import('views/pages/testimonials')));
+const Trees = Loadable(lazy(() => import('views/pages/trees')));
 const Excel = Loadable(lazy(() => import('views/pages/excel')));
 const NFTS = Loadable(lazy(() => import('views/pages/marketPlace/nfts')));
 const AddNFTS = Loadable(lazy(() => import('views/pages/marketPlace/nfts/component/addNft')));
@@ -44,12 +48,28 @@ const ProtectedRoutes = {
             element: <Municipalities />
         },
         {
+            path: '/rhino',
+            element: <Rhino />
+        },
+        {
             path: '/grasshopper',
             element: <Grasshopper />
         },
         {
             path: '/excel',
             element: <Excel />
+        },
+        {
+            path: '/plants',
+            element: <Plants />
+        },
+        {
+            path: '/testimonials',
+            element: <Testimonials />
+        },
+        {
+            path: '/trees',
+            element: <Trees />
         },
         {
             path: '/events',

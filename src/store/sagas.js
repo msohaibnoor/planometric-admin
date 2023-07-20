@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
 import authSaga from '../redux/auth/sagas';
 import municipalitiesSaga from '../redux/municipalities/sagas';
+import testimonialsSaga from '../redux/testimonials/sagas';
 import superAdminDashboardSaga from '../redux/dashboard/sagas';
 import usersSaga from '../redux/users/sagas';
 import marketPlaceSaga from '../redux/marketPlace/sagas';
@@ -19,6 +20,7 @@ export default function* rootSaga() {
         eventsSaga(),
         advertisementsSaga(),
         mintedNftSaga(),
-        municipalitiesSaga()
+        municipalitiesSaga(),
+        testimonialsSaga()
     ]);
 }

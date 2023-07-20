@@ -3,21 +3,16 @@ import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, TextField, MenuItem } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { API_URL } from '../../../utils/axios';
-
+import { toast } from 'react-toastify';
 // import FileInput from "./components/FileInput";
 
 const index = () => {
     const token = useSelector((state) => state.auth.token);
     const [file, setFile] = useState(null);
-    console.log(file?.name);
-    console.log(file?.name.split('.')[1]);
-
     const [fileError, setFileError] = useState(false);
     const handleFile = (e) => {
         if (e.currentTarget.files[0].name.split('.')[1] !== 'csv') {
-          console.log('camee')
             return;
         }
         setFile(e.currentTarget.files[0]);
@@ -45,7 +40,7 @@ const index = () => {
     };
     return (
         <div>
-            <h1>Update Excel File</h1>
+            <h1>Update Plants Database</h1>
             <form>
                 {/* <FileInput label="Attachment" error={null} /> */}
                 <TextField
@@ -62,9 +57,8 @@ const index = () => {
                     autoComplete="given-name"
                     focused={true}
                     error={fileError}
-                    // value={file?.name}
                     onChange={handleFile}
-                    helperText="Only .csv files allowed"
+                    helperText="only .csv files allowed"
                 />
                 <div>
                     <Button variant="contained" size="small" onClick={fileUpload} sx={{ marginTop: '25px' }}>

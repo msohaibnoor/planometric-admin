@@ -7,6 +7,7 @@ import AuthReducer from 'redux/auth/reducers';
 import superAdminDashboard from 'redux/dashboard/reducers';
 import usersReducer from 'redux/users/reducers';
 import municipalitiesReducer from 'redux/municipalities/reducers';
+import testimonialsReducer from 'redux/testimonials/reducers';
 import marketPlaceReducer from 'redux/marketPlace/reducers';
 import nftReducer from 'redux/nft/reducers';
 import eventsReducer from '../redux/events/reducers';
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
     events: eventsReducer,
     advertisements: advertisementsReducer,
     mintedNft: mintedNftReducer,
-    municipalities: municipalitiesReducer
+    municipalities: municipalitiesReducer,
+    testimonials: testimonialsReducer
 });
 
 export default rootReducer;

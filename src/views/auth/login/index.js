@@ -23,10 +23,10 @@ const Login = () => {
                         <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                             <LoginCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
-                                <Grid item sx={{ mb: 3 }}>
+                                    <Grid item sx={{ mb: 3 }}>
                                         <Link to="#">
                                             {/* <Logo /> */}
-                                            <h1>Planomatric</h1>
+                                            <h1>Planometric</h1>
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12}>
@@ -37,12 +37,12 @@ const Login = () => {
                                                     gutterBottom
                                                     variant={matchDownSM ? 'h3' : 'h2'}
                                                 >
-                                                     {<FormattedMessage id="signIn.title" />}   
+                                                    {<FormattedMessage id="signIn.title" />}
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Typography variant="caption" fontSize="16px" textAlign="center">
-                                                {<FormattedMessage id="signIn.Heading" />}     
+                                                    {<FormattedMessage id="signIn.Heading" />}
                                                 </Typography>
                                             </Grid>
                                         </Grid>

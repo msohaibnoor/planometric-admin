@@ -56,8 +56,9 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ pl: 3 }}>ID</TableCell>
-                        <TableCell>Username</TableCell>
+                        {/* <TableCell sx={{ pl: 3 }}>ID</TableCell> */}
+                        <TableCell sx={{ pl: 3 }}>Username</TableCell>
+                        <TableCell>Email</TableCell>
                         <TableCell>Company name</TableCell>
                         <TableCell>Payment method</TableCell>
                         {/* <TableCell>User Type</TableCell> */}
@@ -75,23 +76,19 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                         usersList.users.map((row, index) => (
                             <>
                                 <TableRow hover key={row.id}>
-                                    <TableCell
+                                    {/* <TableCell
                                         sx={{ pl: 3 }}
                                         onClick={() => {
                                             console.log('row', row);
                                         }}
                                     >
                                         {row.id}{' '}
-                                    </TableCell>
-                                    <TableCell>
-                                        {row?.firstName}
-                                    </TableCell>
+                                    </TableCell> */}
+                                    <TableCell>{row?.firstName}</TableCell>
+                                    <TableCell>{row?.email}</TableCell>
                                     <TableCell>{row?.companyName}</TableCell>
-                                    <TableCell>
-                                      {row.paymentMethod}
-                                    </TableCell>
-                                   
-                                   
+                                    <TableCell>{row.paymentMethod}</TableCell>
+
                                     <TableCell>{moment(row.createdAt).format('DD-MM-YYYY')}</TableCell>
 
                                     <TableCell align="center" sx={{ pr: 3 }}>

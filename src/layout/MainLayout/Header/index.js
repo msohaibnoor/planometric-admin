@@ -47,7 +47,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             >
                 <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
                     {/* <img style={{ width: '170px' }} src={kwikTrustLogo} alt="Berry" /> */}
-                    <h1>Planomatric</h1>
+                    <h1>Planometric</h1>
                 </Box>
                 <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
                     <Avatar

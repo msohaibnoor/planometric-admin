@@ -2,7 +2,7 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics, IconUserCheck, IconReceipt2, IconClipboardList } from '@tabler/icons';
+import { IconDashboard, IconDeviceAnalytics, IconUserCheck, IconReceipt2, IconClipboardList, IconPlant, IconTrees, IconFileReport, IconCode, Icon3dCubeSphere, IconChartDonut3 } from '@tabler/icons';
 
 // constant
 const icons = {
@@ -10,7 +10,13 @@ const icons = {
     IconDeviceAnalytics,
     IconUserCheck,
     IconReceipt2,
-    IconClipboardList
+    IconClipboardList,
+    IconPlant,
+    IconTrees,
+    IconFileReport,
+    IconCode,
+    Icon3dCubeSphere,
+    IconChartDonut3
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -53,11 +59,19 @@ const superAdminMenu = {
             breadcrumbs: false
         },
         {
+            id: 'Rhino',
+            title: <FormattedMessage id="rhino" />,
+            type: 'item',
+            url: '/rhino',
+            icon: icons.Icon3dCubeSphere,
+            breadcrumbs: false
+        },
+        {
             id: 'Grasshopper',
             title: <FormattedMessage id="grasshopper" />,
             type: 'item',
             url: '/grasshopper',
-            icon: icons.IconReceipt2,
+            icon: icons.IconCode,
             breadcrumbs: false
         },
         {
@@ -65,7 +79,31 @@ const superAdminMenu = {
             title: <FormattedMessage id="excel" />,
             type: 'item',
             url: '/excel',
-            icon: icons.IconReceipt2,
+            icon: icons.IconFileReport,
+            breadcrumbs: false
+        },
+        {
+            id: 'Plants',
+            title: <FormattedMessage id="plants" />,
+            type: 'item',
+            url: '/plants',
+            icon: icons.IconPlant,
+            breadcrumbs: false
+        },
+        {
+            id: 'Trees',
+            title: <FormattedMessage id="trees" />,
+            type: 'item',
+            url: '/trees',
+            icon: icons.IconTrees,
+            breadcrumbs: false
+        },
+        {
+            id: 'Testimonials',
+            title: <FormattedMessage id="testimonials" />,
+            type: 'item',
+            url: '/testimonials',
+            icon: icons.IconPlant,
             breadcrumbs: false
         }
         // {
