@@ -1,5 +1,7 @@
 import { forwardRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -22,6 +24,7 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteUserDialog from './DeleteUserDialog';
+import AddUpdateTestimonialDialog from './AddUpdateTestimonial';
 import moment from 'moment';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import IconButton from '@mui/material/IconButton';
@@ -34,8 +37,10 @@ const UserTable = ({ testimonialsList, page, limit, search, type }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [openFeedback, setOpenFeedback] = useState(false);
     const [copied, setCopied] = useState(false);
     const [testimonialId, setTestimonialId] = useState(null);
+    const [testimonial, setTestimonial] = useState(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
     const handleClick = (event, row) => {
@@ -53,6 +58,16 @@ const UserTable = ({ testimonialsList, page, limit, search, type }) => {
     console.log({testimonialId})
     return (
         <TableContainer>
+            <AddUpdateTestimonialDialog
+                setOpenFeedback={setOpenFeedback}
+                openFeedback={openFeedback}
+                testimonialId={testimonialId}
+                testimonial={testimonial}
+                page={page}
+                limit={limit}
+                search={search}
+                type={type}
+            />
             <DeleteUserDialog
                 setOpen={setOpen}
                 open={open}
@@ -85,7 +100,7 @@ const UserTable = ({ testimonialsList, page, limit, search, type }) => {
                                     <TableCell>{row?.feedbackText}</TableCell>
                                     <TableCell>{row?.clientName}</TableCell>
                                     <TableCell>{row?.clientDesignation}</TableCell>
-                                    <TableCell>{row.clientImageUrl}</TableCell>
+                                    <TableCell>{row.clientImageUrl.slice(0, 20) + '...'}</TableCell>
 
                                     <TableCell align="center" sx={{ pr: 3 }}>
                                         <IconButton>
@@ -118,8 +133,27 @@ const UserTable = ({ testimonialsList, page, limit, search, type }) => {
                                         >
                                             <MenuItem
                                                 onClick={() => {
+                                                    // setBrandName(selectedRow.name);
+                                                    // setBrandId(selectedRow.id);
+                                                    // setAddUpdateOpen(true);
+                                                    setOpenFeedback(true);
+                                                    setTestimonial(selectedRow);
+                                                    setTestimonialId(selectedRow.id);
+                                                    // handleClose();
+                                                }}
+                                            >
+                                                <div className="actionItem">
+                                                    <IconButton color="primary" aria-label="Edit" size="large" sx={{ padding: '0px' }}>
+                                                        <EditOutlinedIcon sx={{ fontSize: '1.5rem' }} />
+                                                    </IconButton>
+                                                    <p>Edit</p>
+                                                </div>
+                                            </MenuItem>
+                                            <MenuItem
+                                                onClick={() => {
                                                     setOpen(true);
                                                     setTestimonialId(selectedRow.id);
+                                                    setTestimonial(selectedRow);
                                                     handleClose();
                                                 }}
                                             >

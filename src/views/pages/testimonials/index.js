@@ -7,7 +7,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import HeadingCard from 'shared/Card/HeadingCard';
 import { gridSpacing } from 'store/constant';
 import { IconSearch } from '@tabler/icons';
-import AddGuestUserDialog from './component/AddGuestUserDialog';
+import AddUpdateTestimonialDialog from './component/AddUpdateTestimonial';
 import AddRestrictedUserDialog from './component/AddRestrictedUserDialog';
 import { getAllTestimonials } from '../../../redux/testimonials/actions';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
@@ -17,6 +17,10 @@ const Testimonials = () => {
     const dispatch = useDispatch();
     const testimonials = useSelector((state) => state.testimonials.testimonials);
     const [open, setOpen] = useState(false);
+    const [openFeedback, setOpenFeedback] = useState(false);
+
+    const [testimonialId, setTestimonialId] = useState(null);
+    const [feedbackText, setFeedbackText] = useState('');
     const [openRestricted, setRestrictedOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
@@ -48,18 +52,42 @@ const Testimonials = () => {
 
     return (
         <>
-            <AddGuestUserDialog setOpen={setOpen} open={open} search={search} page={page} limit={limit} type={type} />
-            <AddRestrictedUserDialog
-                setOpen={setRestrictedOpen}
-                open={openRestricted}
-                search={search}
+            <AddUpdateTestimonialDialog
+                testimonialId={testimonialId}
+                setTestimonialId={setTestimonialId}
+                feedbackText={feedbackText}
                 page={page}
                 limit={limit}
-                type={type}
+                search={search}
+                openFeedback={openFeedback}
+                setOpenFeedback={setOpenFeedback}
             />
             <HeadingCard title="Testimonials" />
 
-            <MainCard>
+            <MainCard
+                title={
+                    <Grid container alignItems="center" justifyContent="space-between" spacing={gridSpacing}>
+                        <Grid item xs={3}></Grid>
+                        <Grid item xs={3}></Grid>
+                        <Grid item xs={6} textAlign="end">
+                            <Button
+                                sx={{
+                                    ':hover': {
+                                        boxShadow: 'none'
+                                    }
+                                }}
+                                variant="contained"
+                                onClick={() => {
+                                    setOpenFeedback(true);
+                                }}
+                            >
+                                Add Testimonial
+                            </Button>
+                        </Grid>
+                    </Grid>
+                }
+                content={false}
+            >
                 {testimonials && testimonials.testimonials && testimonials.testimonials.length > 0 ? (
                     <>
                         <TestimonialTable
@@ -68,6 +96,8 @@ const Testimonials = () => {
                             limit={limit}
                             search={search}
                             type={type}
+                            open={open}
+                            setOpen={setOpen}
                         />
                     </>
                 ) : (

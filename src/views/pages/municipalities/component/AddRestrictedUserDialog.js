@@ -31,6 +31,7 @@ export default function AddRestrictedUserDialog({ open, setOpen, page, limit, se
         },
         validationSchema,
         onSubmit: (values) => {
+            console.log({values})
             dispatch(
                 addMunicipality({
                     state: values.state,
