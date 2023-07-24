@@ -5,7 +5,9 @@ import {
     ADD_TESTIMONIAL,
     ADD_RESTRICTED_TESTIMONIAL,
     CHANGE_TESTIMONIAL_STATUS,
-    UPDATE_TESTIMONIAL
+    UPDATE_TESTIMONIAL,
+    ADD_NOTE,
+    DELETE_NOTE
 } from './constants';
 
 export const getAllTestimonials = (data) => {
@@ -42,6 +44,18 @@ export const addTestimonial = (data) => {
     };
 };
 
+export const addNoteAction = (data) => {
+    return {
+        type: ADD_NOTE,
+        payload: data
+    };
+};
+export const deleteNote = (data) => {
+    return {
+        type: DELETE_NOTE,
+        payload: data
+    };
+};
 export const addRestrictedTestimonial = (data) => {
     return {
         type: ADD_RESTRICTED_TESTIMONIAL,

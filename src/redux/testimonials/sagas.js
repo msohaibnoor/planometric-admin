@@ -2,8 +2,17 @@ import axios from 'utils/axios';
 import { all, call, fork, put, retry, takeLatest, select } from 'redux-saga/effects';
 import { sagaErrorHandler } from 'shared/helperMethods/sagaErrorHandler';
 import { makeSelectAuthToken } from '../../shared/helperMethods/Selectors';
-import { getAllUsersSuccess, getAllUsers, getAllTestimonials, getAllTestimonialsSuccess, addTestimonial } from './actions';
-import { GET_ALL_TESTIMONIALS, DELETE_TESTIMONIAL, UPDATE_TESTIMONIAL, CHANGE_USER_STATUS, ADD_TESTIMONIAL } from './constants';
+import { getAllUsersSuccess, getAllTestimonials, getAllTestimonialsSuccess, addTestimonial } from './actions';
+import { getAllUsers } from '../users/actions';
+import {
+    GET_ALL_TESTIMONIALS,
+    DELETE_TESTIMONIAL,
+    UPDATE_TESTIMONIAL,
+    CHANGE_USER_STATUS,
+    ADD_TESTIMONIAL,
+    ADD_NOTE,
+    DELETE_NOTE
+} from './constants';
 import { SetNotification } from 'shared/helperMethods/setNotification';
 
 function* getAllTestimonialsRequest({ payload }) {
@@ -104,11 +113,54 @@ export function* watchAddTestimonial() {
     yield takeLatest(ADD_TESTIMONIAL, addTestimonialRequest);
 }
 
+function* addNoteRequest({ payload }) {
+    const data = {
+        note: payload?.note,
+        userId: payload?.userId
+    };
+    try {
+        const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
+        const response = yield axios.post(`/admin/notes/add`, data, headers);
+        yield put(getAllUsers({ search: null }));
+        payload.handleClose();
+        //    payload.setAddNote(false);
+        //    payload.setLoader(false);
+        yield SetNotification('success', response.data.message);
+    } catch (error) {
+        yield sagaErrorHandler(error.response.data.data);
+    }
+}
+
+export function* watchAddNote() {
+    yield takeLatest(ADD_NOTE, addNoteRequest);
+}
+function* deleteNoteRequest({ payload }) {
+    try {
+        const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
+        const { data } = yield axios.delete(`/admin/notes/delete/${payload.noteId}`, headers);
+        yield put(
+            getAllUsers({
+                search: ""
+            })
+        );
+        payload.handleClose();
+        yield SetNotification('success', data.data.message);
+    } catch (error) {
+        console.log(error);
+        yield sagaErrorHandler(error.response.data.data);
+    }
+}
+
+export function* watchDeleteNote() {
+    yield takeLatest(DELETE_NOTE, deleteNoteRequest);
+}
 export default function* usersSaga() {
     yield all([
         fork(watchGetAllTestimonials),
         fork(watchDeleteTestimonial),
         fork(watchUpdateTestimonialRequest),
-        fork(watchAddTestimonial)
+        fork(watchAddTestimonial),
+        fork(watchAddNote),
+        fork(watchDeleteNote)
     ]);
 }

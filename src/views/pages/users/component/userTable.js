@@ -18,10 +18,12 @@ import {
     Link
 } from '@mui/material';
 import BlockIcon from '@mui/icons-material/Block';
+import NoteIcon from '@mui/icons-material/Note';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteUserDialog from './DeleteUserDialog';
+import AddUpdateNoteDialog from './AddUpdateNote';
 import moment from 'moment';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import IconButton from '@mui/material/IconButton';
@@ -34,12 +36,17 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [openNotes, setOpenNotes] = useState(false);
+    const [notes, setNotes] = useState([]);
     const [copied, setCopied] = useState(false);
     const [userId, setUserId] = useState();
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
     const handleClick = (event, row) => {
+        console.log('row');
+        console.log(row);
         setSelectedRow(row);
+        setNotes(row.Notes);
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
@@ -52,6 +59,16 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
     return (
         <TableContainer>
             <DeleteUserDialog setOpen={setOpen} open={open} userId={userId} page={page} limit={limit} search={search} type={type} />
+            <AddUpdateNoteDialog
+                openNotes={openNotes}
+                setOpenNotes={setOpenNotes}
+                notes={notes}
+                page={page}
+                limit={limit}
+                search={search}
+                type={type}
+                userId={userId}
+            />
 
             <Table>
                 <TableHead>
@@ -61,6 +78,7 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                         <TableCell>Email</TableCell>
                         <TableCell>Company name</TableCell>
                         <TableCell>Payment method</TableCell>
+                        <TableCell>Projects</TableCell>
                         {/* <TableCell>User Type</TableCell> */}
                         {/* <TableCell>Status</TableCell> */}
                         <TableCell>Created At</TableCell>
@@ -88,6 +106,7 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                                     <TableCell>{row?.email}</TableCell>
                                     <TableCell>{row?.companyName}</TableCell>
                                     <TableCell>{row.paymentMethod}</TableCell>
+                                    <TableCell>{row.Projects.length}</TableCell>
 
                                     <TableCell>{moment(row.createdAt).format('DD-MM-YYYY')}</TableCell>
 
@@ -167,6 +186,25 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                                                 gap={'5px'}
                                                 sx={{ padding: '0px 8px' }}
                                             > */}
+                                            <MenuItem
+                                                onClick={() => {
+                                                    setOpenNotes(true);
+                                                    setUserId(selectedRow.id);
+                                                }}
+                                            >
+                                                <div className="actionItem">
+                                                    <IconButton
+                                                        disabled={selectedRow?.isRestricted}
+                                                        color={selectedRow?.isActive ? 'primary' : 'error'}
+                                                        aria-label="delete"
+                                                        size="large"
+                                                        sx={{ padding: '0px' }}
+                                                    >
+                                                        <NoteIcon sx={{ fontSize: '1.5rem' }} />
+                                                    </IconButton>
+                                                    <p>Notes</p>
+                                                </div>
+                                            </MenuItem>
                                             <MenuItem
                                                 onClick={() => {
                                                     dispatch(

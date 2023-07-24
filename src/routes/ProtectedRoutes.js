@@ -55,10 +55,10 @@ const ProtectedRoutes = {
             path: '/grasshopper',
             element: <Grasshopper />
         },
-        {
-            path: '/excel',
-            element: <Excel />
-        },
+        // {
+        //     path: '/excel',
+        //     element: <Excel />
+        // },
         {
             path: '/plants',
             element: <Plants />

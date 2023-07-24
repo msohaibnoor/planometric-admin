@@ -74,14 +74,14 @@ const superAdminMenu = {
             icon: icons.IconCode,
             breadcrumbs: false
         },
-        {
-            id: 'Excel',
-            title: <FormattedMessage id="excel" />,
-            type: 'item',
-            url: '/excel',
-            icon: icons.IconFileReport,
-            breadcrumbs: false
-        },
+        // {
+        //     id: 'Excel',
+        //     title: <FormattedMessage id="excel" />,
+        //     type: 'item',
+        //     url: '/excel',
+        //     icon: icons.IconFileReport,
+        //     breadcrumbs: false
+        // },
         {
             id: 'Plants',
             title: <FormattedMessage id="plants" />,

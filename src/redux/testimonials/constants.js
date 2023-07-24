@@ -1,3 +1,6 @@
+export const ADD_NOTE = 'add_note';
+export const DELETE_NOTE = 'delete_note';
+export const UPDATE_NOTE = 'update_note';
 export const GET_ALL_TESTIMONIALS = 'get_all_testimonials';
 export const UPDATE_TESTIMONIAL = 'update_testimonial';
 export const GET_ALL_TESTIMONIALS_SUCCESS = 'get_all_testimonials_success';
