@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utils/axios';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, TextField, MenuItem, Input } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, TextField, MenuItem, Input, Grid } from '@mui/material';
 import FileInput from './components/FileInput';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,9 +12,9 @@ const index = () => {
     const [file, setFile] = useState(null);
     const [fileError, setFileError] = useState(false);
     const handleFile = (e) => {
-      if (e.currentTarget.files[0]?.name?.split('.')[1] !== 'gh') {
-          return;
-      }
+        if (e.currentTarget.files[0]?.name?.split('.')[1] !== 'gh') {
+            return;
+        }
         setFile(e.currentTarget.files[0]);
         setFileError(false);
     };
@@ -38,12 +38,41 @@ const index = () => {
             console.log(err);
         }
     };
-   
+
+    const handleDownload = async () => {
+        try {
+            const response = await axios.get(`${API_URL}admin/files/download-3d-model`, {
+                responseType: 'arraybuffer',
+                headers: {
+                    Authorization: `Bearer ${token}` // Replace YOUR_BEARER_TOKEN with the actual token
+                }
+            });
+            console.log(response.data);
+            const blob = new Blob([response.data], { type: 'application/octet-stream' });
+
+            // Create a temporary URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a hidden anchor tag and trigger the download
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'u-planometric-R-template-testversion.3dm'; // Replace 'file.3dm' with the desired filename
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up the temporary URL
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error downloading the .3dm file:', error);
+            // Handle the error, e.g., show an error message to the user
+        }
+    };
     return (
-        <div>
+        <Grid display="flex" justifyContent={'center'} alignItems={'center'} gap={'30px'}>
             {/* <FileInput label={'Select file'} onChange={handleFile} error={fileError} /> */}
-            <h1>Update Grasshopper script</h1>
             <form>
+                <h1>Update Grasshopper script</h1>
                 <TextField
                     sx={{ marginTop: '25px' }}
                     id="walletAddress"
@@ -59,7 +88,7 @@ const index = () => {
                     autoComplete="given-name"
                     focused={true}
                     onChange={handleFile}
-                    helperText='only .gh files allowed'
+                    helperText="only .gh files allowed"
                 />
 
                 <div>
@@ -76,7 +105,10 @@ const index = () => {
                     </Button>
                 </div>
             </form>
-        </div>
+            <Button variant="contained" size="large" onClick={handleDownload}>
+                Download Current File
+            </Button>
+        </Grid>
     );
 };
 
