@@ -2,7 +2,19 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics, IconUserCheck, IconReceipt2, IconClipboardList, IconPlant, IconTrees, IconFileReport, IconCode, Icon3dCubeSphere, IconChartDonut3 } from '@tabler/icons';
+import {
+    IconDashboard,
+    IconDeviceAnalytics,
+    IconUserCheck,
+    IconReceipt2,
+    IconClipboardList,
+    IconPlant,
+    IconTrees,
+    IconFileReport,
+    IconCode,
+    Icon3dCubeSphere,
+    IconChartDonut3
+} from '@tabler/icons';
 
 // constant
 const icons = {
@@ -50,6 +62,14 @@ const superAdminMenu = {
         //     icon: icons.IconReceipt2,
         //     breadcrumbs: false
         // },
+        {
+            id: 'Projects',
+            title: <FormattedMessage id="projects" />,
+            type: 'item',
+            url: '/projects',
+            icon: icons.IconReceipt2,
+            breadcrumbs: false
+        },
         {
             id: 'Municipalities',
             title: <FormattedMessage id="municipalities" />,

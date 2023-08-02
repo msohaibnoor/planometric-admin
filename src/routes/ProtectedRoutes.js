@@ -8,6 +8,7 @@ import SuperAdminGuard from './AuthGaurd';
 const SuperAdminDashboard = Loadable(lazy(() => import('views/pages/dashboard')));
 const Users = Loadable(lazy(() => import('views/pages/users')));
 const Municipalities = Loadable(lazy(() => import('views/pages/municipalities')));
+const Projects = Loadable(lazy(() => import('views/pages/projects')));
 const Rhino = Loadable(lazy(() => import('views/pages/rhino')));
 const Grasshopper = Loadable(lazy(() => import('views/pages/grasshopper')));
 const Plants = Loadable(lazy(() => import('views/pages/plants')));
@@ -42,6 +43,10 @@ const ProtectedRoutes = {
         {
             path: '/users',
             element: <Users />
+        },
+        {
+            path: '/projects',
+            element: <Projects />
         },
         {
             path: '/municipalities',
