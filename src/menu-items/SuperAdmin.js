@@ -125,6 +125,14 @@ const superAdminMenu = {
             url: '/testimonials',
             icon: icons.IconPlant,
             breadcrumbs: false
+        },
+        {
+            id: 'WebsiteData',
+            title: <FormattedMessage id="WebsiteData" />,
+            type: 'item',
+            url: '/website-data',
+            icon: icons.IconPlant,
+            breadcrumbs: false
         }
         // {
         //     id: 'nftManagement',

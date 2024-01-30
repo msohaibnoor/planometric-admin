@@ -3,6 +3,7 @@ import authSaga from '../redux/auth/sagas';
 import municipalitiesSaga from '../redux/municipalities/sagas';
 import testimonialsSaga from '../redux/testimonials/sagas';
 import projectsSaga from '../redux/projects/sagas';
+import clientDataSaga from '../redux/clientdata/sagas';
 import superAdminDashboardSaga from '../redux/dashboard/sagas';
 import usersSaga from '../redux/users/sagas';
 import marketPlaceSaga from '../redux/marketPlace/sagas';
@@ -23,6 +24,7 @@ export default function* rootSaga() {
         mintedNftSaga(),
         municipalitiesSaga(),
         testimonialsSaga(),
-        projectsSaga()
+        projectsSaga(),
+        clientDataSaga()
     ]);
 }

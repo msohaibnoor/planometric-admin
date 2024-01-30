@@ -55,26 +55,25 @@ export default function AddUpdateBrandDialog({
         },
         validationSchema,
         onSubmit: (values) => {
-            console.log('values');
-            console.log(values);
+            // console.log('values');
+            // console.log(values);
             setLoader(true);
-             if (!testimonial) {
-                 dispatch(
-                 addTestimonial({
-                         feedbackText: values.feedbackText,
-                         clientDesignation: values.clientDesignation,
-                         clientName: values.clientName,
-                         clientImageUrl: values.clientImageUrl,
-                         search: search,
-                         page: page,
-                         limit: limit,
-                         handleClose: handleClose,
-                         setLoader: setLoader
-                     })
-                 );
-             }
+            if (!testimonial) {
+                dispatch(
+                    addTestimonial({
+                        feedbackText: values.feedbackText,
+                        clientDesignation: values.clientDesignation,
+                        clientName: values.clientName,
+                        clientImageUrl: values.clientImageUrl,
+                        search: search,
+                        page: page,
+                        limit: limit,
+                        handleClose: handleClose,
+                        setLoader: setLoader
+                    })
+                );
+            }
             dispatch(
-               
                 updateTestimonial({
                     id: testimonialId,
                     feedbackText: values.feedbackText,
@@ -90,7 +89,7 @@ export default function AddUpdateBrandDialog({
             );
         }
     });
-    console.log(formik);
+    // console.log(formik);
     const handleClose = () => {
         setLoader(false);
         setOpenFeedback(false);
