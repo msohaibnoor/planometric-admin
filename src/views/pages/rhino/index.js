@@ -27,7 +27,7 @@ const index = () => {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            const { data } = await axios.post(`${API_URL}admin/fileUpload`, formData, {
+            const { data } = await axios.post(`${API_URL}admin/fileUpload?fileName=3dModel`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -41,7 +41,7 @@ const index = () => {
 
     const handleDownload = async () => {
         try {
-            const response = await axios.get(`${API_URL}admin/files/download-3d-model`, {
+            const response = await axios.get(`${API_URL}admin/files/download-grasshopper-script?fileToDownload=3DModel`, {
                 responseType: 'arraybuffer',
                 headers: {
                     Authorization: `Bearer ${token}` // Replace YOUR_BEARER_TOKEN with the actual token
