@@ -27,7 +27,7 @@ const index = () => {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            const { data } = await axios.post(`${API_URL}admin/fileUpload`, formData, {
+            const { data } = await axios.post(`${API_URL}admin/csv-upload`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -41,7 +41,7 @@ const index = () => {
 
     const handleDownload = async () => {
         try {
-            const response = await axios.get(`${API_URL}admin/files/download-3d-model`, {
+            const response = await axios.get(`${API_URL}admin/files/download-grasshopper-script?fileToDownload=plants`, {
                 responseType: 'arraybuffer',
                 headers: {
                     Authorization: `Bearer ${token}` // Replace YOUR_BEARER_TOKEN with the actual token
@@ -57,7 +57,7 @@ const index = () => {
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
-            a.download = 'u-planometric-R-template-testversion.3dm'; // Replace 'file.3dm' with the desired filename
+            a.download = 'plant-database.csv'; // Replace 'file.3dm' with the desired filename
             document.body.appendChild(a);
             a.click();
 
