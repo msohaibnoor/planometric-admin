@@ -13,7 +13,10 @@ import {
     IconFileReport,
     IconCode,
     Icon3dCubeSphere,
-    IconChartDonut3
+    IconChartDonut3,
+    IconQuestionMark,
+    IconSuperscript,
+    IconHelp
 } from '@tabler/icons';
 
 // constant
@@ -28,7 +31,10 @@ const icons = {
     IconFileReport,
     IconCode,
     Icon3dCubeSphere,
-    IconChartDonut3
+    IconChartDonut3,
+    IconSuperscript,
+    IconQuestionMark,
+    IconHelp
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -132,6 +138,14 @@ const superAdminMenu = {
             type: 'item',
             url: '/website-data',
             icon: icons.IconPlant,
+            breadcrumbs: false
+        },
+        {
+            id: 'queries',
+            title: <FormattedMessage id="queries" />,
+            type: 'item',
+            url: '/contact-us-queries',
+            icon: icons.IconHelp,
             breadcrumbs: false
         }
         // {

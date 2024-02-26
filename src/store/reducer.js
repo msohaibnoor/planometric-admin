@@ -10,6 +10,7 @@ import municipalitiesReducer from 'redux/municipalities/reducers';
 import projectsReducer from 'redux/projects/reducers';
 import dataReducer from 'redux/clientdata/reducers';
 import testimonialsReducer from 'redux/testimonials/reducers';
+import queriesReducer from 'redux/contactUsQueries/reducers';
 import marketPlaceReducer from 'redux/marketPlace/reducers';
 import nftReducer from 'redux/nft/reducers';
 import eventsReducer from '../redux/events/reducers';
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
     municipalities: municipalitiesReducer,
     testimonials: testimonialsReducer,
     projects: projectsReducer,
-    clientData: dataReducer
+    clientData: dataReducer,
+    queries: queriesReducer
 });
 
 export default rootReducer;

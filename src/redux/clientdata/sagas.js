@@ -22,12 +22,18 @@ export function* watchGetAllData() {
 }
 
 function* updateDataRequest({ payload }) {
+    console.log("payloadsssssssssssssssssss");
+    console.log(payload);
     let data = {
         id: payload.id,
         businessDesc: payload.businessDesc,
         businessInformation: payload.businessInformation,
         costDescription: payload.costDescription,
-        planometricPlanFee: payload.planometricPlanFee
+        planometricPlanFee: payload.planometricPlanFee,
+        stripeText: payload.stripeText,
+        createPlanInstruction1: payload.createPlanInstruction1,
+        createPlanInstruction2: payload.createPlanInstruction2,
+        createPlanInstruction3: payload.createPlanInstruction3,
     };
     try {
         const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };

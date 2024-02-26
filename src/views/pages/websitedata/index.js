@@ -98,6 +98,10 @@ const WebsiteData = () => {
                     businessInformation: values.businessInformation,
                     costDescription: values.costDescription,
                     planometricPlanFee: Number(values.planometricPlanFee),
+                    stripeText: values.stripeText,
+                    createPlanInstruction1: values.createPlanInstruction1,
+                    createPlanInstruction2: values.createPlanInstruction2,
+                    createPlanInstruction3: values.createPlanInstruction3,
                     setLoader: setLoader,
                     handleClose: handleClose
                 })
@@ -154,6 +158,8 @@ const WebsiteData = () => {
                                 }}
                             />
                         </Grid>
+                        <h2 style={{marginLeft: "20px"}} >Business Information</h2>
+
                         <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
                             <TextareaAutosize
                                 id="businessInformation"
@@ -163,6 +169,88 @@ const WebsiteData = () => {
                                 // rowsMin={4}
                                 placeholder="Start typing here..."
                                 value={formik.values?.businessInformation}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <h2 style={{marginLeft: "20px"}} >Stripe Text</h2>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="stripeText"
+                                name="stripeText"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.stripeText}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <h2 style={{marginLeft: "20px"}}>Create plan Instructions</h2>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="createPlanInstruction1"
+                                name="createPlanInstruction1"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.createPlanInstruction1}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="createPlanInstruction2"
+                                name="createPlanInstruction2"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.createPlanInstruction2}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="createPlanInstruction3"
+                                name="createPlanInstruction3"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.createPlanInstruction3}
                                 onChange={formik.handleChange}
                                 style={{
                                     width: '100%',

@@ -14,6 +14,7 @@ const Grasshopper = Loadable(lazy(() => import('views/pages/grasshopper')));
 const Plants = Loadable(lazy(() => import('views/pages/plants')));
 const Testimonials = Loadable(lazy(() => import('views/pages/testimonials')));
 const WebsiteData = Loadable(lazy(() => import('views/pages/websitedata')));
+const Queries = Loadable(lazy(() => import('views/pages/query')));
 const Trees = Loadable(lazy(() => import('views/pages/trees')));
 const Excel = Loadable(lazy(() => import('views/pages/excel')));
 const NFTS = Loadable(lazy(() => import('views/pages/marketPlace/nfts')));
@@ -125,7 +126,11 @@ const ProtectedRoutes = {
         {
             path: '/marketPlace',
             element: <MintedNfts />
-        }
+        },
+        {
+            path: '/contact-us-queries',
+            element: <Queries />
+        },
     ]
 };
 
