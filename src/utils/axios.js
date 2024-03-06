@@ -1,7 +1,9 @@
 import axioss from 'axios';
 // export const API_URL = 'http://localhost:3000/api/v1/';
 // export const API_URL = 'http://18.224.88.112/api/v1/'; // Live
-export const API_URL = 'http://localhost:8000/api/v1/'; // Sohaib
+// export const API_URL = 'http://localhost:8000/api/v1/'; // Sohaib
+export const API_URL = 'http://planometric.com.au/nodeapp/api/v1'
+
 // export const API_URL = 'http://192.168.3.108:3000/api/v1/'; //Dawood
 // export const API_URL = 'http://192.168.3.41:3000/api/v1/'; // Abdullah
 const axios = axioss.create({
