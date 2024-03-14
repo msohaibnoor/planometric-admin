@@ -102,6 +102,12 @@ const WebsiteData = () => {
                     createPlanInstruction1: values.createPlanInstruction1,
                     createPlanInstruction2: values.createPlanInstruction2,
                     createPlanInstruction3: values.createPlanInstruction3,
+                    howItWorksStep1: values.howItWorksStep1,
+                    howItWorksStep1Green: values.howItWorksStep1Green,
+                    howItWorksStep2: values.howItWorksStep2,
+                    howItWorksStep2Green: values.howItWorksStep2Green,
+                    howItWorksStep3: values.howItWorksStep3,
+                    howItWorksStep3Green: values.howItWorksStep3Green,
                     setLoader: setLoader,
                     handleClose: handleClose
                 })
@@ -110,11 +116,12 @@ const WebsiteData = () => {
         }
     });
 
+
+
     console.log(formik);
     return (
         <>
             <HeadingCard title="Update Planometric data" />
-
             <MainCard content={false}>
                 <form>
                     <Grid container flexDirection={'column'}>
@@ -262,6 +269,129 @@ const WebsiteData = () => {
                                 }}
                             />
                         </Grid>
+                        <h2 style={{marginLeft: "20px"}}>How It works (steps)</h2>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="howItWorksStep1"
+                                name="howItWorksStep1"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.howItWorksStep1}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="howItWorksStep1Green"
+                                name="howItWorksStep1Green"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.howItWorksStep1Green}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="howItWorksStep2"
+                                name="howItWorksStep2"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.howItWorksStep2}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="howItWorksStep2Green"
+                                name="howItWorksStep2Green"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.howItWorksStep2Green}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="howItWorksStep3"
+                                name="howItWorksStep3"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.howItWorksStep3}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="howItWorksStep3Green"
+                                name="howItWorksStep3Green"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.howItWorksStep3Green}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <h2 style={{marginLeft: "20px"}}>Planometric project fee</h2>
+
                         <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
                             <TextField
                                 id="planometricPlanFee"

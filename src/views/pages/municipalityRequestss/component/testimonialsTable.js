@@ -1,5 +1,7 @@
 import { forwardRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -22,6 +24,7 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteUserDialog from './DeleteUserDialog';
+import AddUpdateTestimonialDialog from './AddUpdateTestimonial';
 import moment from 'moment';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import IconButton from '@mui/material/IconButton';
@@ -29,13 +32,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { changeUserStatus } from 'redux/users/actions';
 import { padding } from '@mui/system';
 
-const UserTable = ({ usersList, page, limit, search, type }) => {
+const UserTable = ({ testimonialsList, page, limit, search, type }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [openFeedback, setOpenFeedback] = useState(false);
     const [copied, setCopied] = useState(false);
-    const [userId, setUserId] = useState();
+    const [testimonialId, setTestimonialId] = useState(null);
+    const [testimonial, setTestimonial] = useState(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
     const handleClick = (event, row) => {
@@ -49,89 +54,55 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
         navigator.clipboard.writeText(address);
         setCopied(true);
     };
+
+    console.log({testimonialId})
     return (
         <TableContainer>
-            <DeleteUserDialog setOpen={setOpen} open={open} userId={userId} page={page} limit={limit} search={search} type={type} />
+            <AddUpdateTestimonialDialog
+                setOpenFeedback={setOpenFeedback}
+                openFeedback={openFeedback}
+                testimonialId={testimonialId}
+                testimonial={testimonial}
+                page={page}
+                limit={limit}
+                search={search}
+                type={type}
+            />
+            <DeleteUserDialog
+                setOpen={setOpen}
+                open={open}
+                testimonialId={testimonialId}
+                page={page}
+                limit={limit}
+                search={search}
+                type={type}
+            />
 
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ pl: 3 }}>ID</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>State</TableCell>
-                        {/* <TableCell>Wallet Address</TableCell> */}
-                        {/* <TableCell>User Type</TableCell> */}
-                        {/* <TableCell>Status</TableCell> */}
-                        <TableCell>Created At</TableCell>
+                        <TableCell sx={{ pl: 3 }}>Requested Municipality</TableCell>
+                        <TableCell>Email</TableCell>
+                        {/* <TableCell>Designation</TableCell> */}
+                        {/* <TableCell>Image</TableCell> */}
                         <TableCell align="center" sx={{ pr: 3 }}>
                             Actions
                         </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {usersList &&
-                        usersList.municipalities &&
-                        usersList.municipalities.length > 0 &&
-                        usersList.municipalities.map((row, index) => (
+                    {testimonialsList &&
+                        testimonialsList.requests &&
+                        testimonialsList.requests.length > 0 &&
+                        testimonialsList.requests.map((row, index) => (
                             <>
                                 <TableRow hover key={row.id}>
-                                    <TableCell
-                                        sx={{ pl: 3 }}
-                                        onClick={() => {
-                                            console.log('row', row);
-                                        }}
-                                    >
-                                        {index + 1}{' '}
-                                    </TableCell>
-                                    <TableCell>
-                                        {row.name
-                                         }
-                                    </TableCell>
-                                    <TableCell>{row.state}</TableCell>
-
-                                    <TableCell>{moment(row.createdAt).format('DD-MM-YYYY')}</TableCell>
+                                    <TableCell>{row?.municipality}</TableCell>
+                                    <TableCell>{row?.email}</TableCell>
+                                    {/* <TableCell>{row?.clientDesignation}</TableCell> */}
+                                    {/* <TableCell>{row?.clientImageUrl.slice(0, 20) + '...'}</TableCell> */}
 
                                     <TableCell align="center" sx={{ pr: 3 }}>
-                                        {/* <Stack direction="row" justifyContent="center" alignItems="center">
-                                            <Tooltip placement="top" title={row.isActive ? 'Block' : 'Unblock'}>
-                                                <IconButton
-                                                    disabled={row.isRestricted}
-                                                    color={row.isActive ? 'primary' : 'error'}
-                                                    aria-label="delete"
-                                                    size="large"
-                                                    onClick={() => {
-                                                        dispatch(
-                                                            changeUserStatus({
-                                                                id: row.id,
-                                                                page: page,
-                                                                limit: limit,
-                                                                search: search,
-                                                                type: type
-                                                            })
-                                                        );
-                                                    }}
-                                                >
-                                                    <BlockIcon sx={{ fontSize: '1.5rem' }} />
-                                                </IconButton>
-                                            </Tooltip>
-                                            <Tooltip placement="top" title="Delete">
-                                                <IconButton
-                                                    color="primary"
-                                                    sx={{
-                                                        color: theme.palette.orange.dark,
-                                                        borderColor: theme.palette.orange.main,
-                                                        '&:hover ': { background: theme.palette.orange.light }
-                                                    }}
-                                                    size="large"
-                                                    onClick={() => {
-                                                        setOpen(true);
-                                                        setUserId(row.id);
-                                                    }}
-                                                >
-                                                    <DeleteOutlineOutlinedIcon sx={{ fontSize: '1.5rem' }} />
-                                                </IconButton>
-                                            </Tooltip>
-                                        </Stack> */}
                                         <IconButton>
                                             <MoreVertIcon
                                                 fontSize="large"
@@ -160,12 +131,11 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                                             sx={{ padding: '0px 8px', boxShadow: 'none' }}
                                             className="customMenuClass"
                                         >
-                                           
-                                            
                                             <MenuItem
                                                 onClick={() => {
                                                     setOpen(true);
-                                                    setUserId(selectedRow.id);
+                                                    setTestimonialId(selectedRow.id);
+                                                    setTestimonial(selectedRow);
                                                     handleClose();
                                                 }}
                                             >
@@ -184,7 +154,6 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                                                     </IconButton>
                                                     <p>Delete</p>
                                                 </div>
-                                                {/* </Tooltip> */}
                                             </MenuItem>
                                         </Menu>
                                     </TableCell>

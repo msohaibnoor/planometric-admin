@@ -28,7 +28,7 @@ function* forgetPasswordRequest({ payload }) {
         };
         const response = yield axios.post(`/admin/forgetPassword`, data);
         yield SetNotification('success', response.data.message);
-        payload.navigate('/');
+        // payload.navigate('/');
     } catch (error) {
         yield sagaErrorHandler(error.response.data.data);
     }

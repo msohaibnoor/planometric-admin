@@ -11,10 +11,13 @@ const Municipalities = Loadable(lazy(() => import('views/pages/municipalities'))
 const Projects = Loadable(lazy(() => import('views/pages/projects')));
 const Rhino = Loadable(lazy(() => import('views/pages/rhino')));
 const Grasshopper = Loadable(lazy(() => import('views/pages/grasshopper')));
+const Revit = Loadable(lazy(() => import('views/pages/RvtDwg')));
 const Plants = Loadable(lazy(() => import('views/pages/plants')));
 const Testimonials = Loadable(lazy(() => import('views/pages/testimonials')));
 const WebsiteData = Loadable(lazy(() => import('views/pages/websitedata')));
 const Queries = Loadable(lazy(() => import('views/pages/query')));
+const Requests = Loadable(lazy(() => import('views/pages/municipalityRequestss')));
+const Instructions = Loadable(lazy(() => import('views/pages/instructions')));
 const Trees = Loadable(lazy(() => import('views/pages/trees')));
 const Excel = Loadable(lazy(() => import('views/pages/excel')));
 const NFTS = Loadable(lazy(() => import('views/pages/marketPlace/nfts')));
@@ -61,6 +64,10 @@ const ProtectedRoutes = {
         {
             path: '/grasshopper',
             element: <Grasshopper />
+        },
+        {
+            path: '/revit-and-dwg',
+            element: <Revit />
         },
         // {
         //     path: '/excel',
@@ -130,6 +137,14 @@ const ProtectedRoutes = {
         {
             path: '/contact-us-queries',
             element: <Queries />
+        },
+        {
+            path: '/municipality-requests',
+            element: <Requests />
+        },
+        {
+            path: '/plan-instructions',
+            element: <Instructions />
         },
     ]
 };

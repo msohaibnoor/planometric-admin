@@ -2,7 +2,8 @@ import produce from 'immer';
 import { GET_ALL_DATA_SUCCESS } from './constants';
 
 const INITIAL_STATE = {
-    clientData: {}
+    clientData: {},
+    // instructions: []
 };
 
 const dataReducer = produce((draft, action) => {

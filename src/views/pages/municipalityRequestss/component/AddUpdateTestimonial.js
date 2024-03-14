@@ -42,6 +42,7 @@ export default function AddUpdateBrandDialog({
         feedbackText: Yup.string().required('Feedback text is required!'),
         // .matches(/^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$/, 'Invalid values'),
         clientName: Yup.string().required('Name is required!').max(50, 'Name can not exceed 50 characters'),
+        clientImageUrl: Yup.string().required('Image url is required!'),
         clientDesignation: Yup.string().required('Designation is required!').max(200, 'Designation can not exceed 50 characters')
     });
     const formik = useFormik({
@@ -50,6 +51,7 @@ export default function AddUpdateBrandDialog({
             feedbackText: testimonial?.feedbackText,
             clientName: testimonial?.clientName,
             clientDesignation: testimonial?.clientDesignation,
+            clientImageUrl: testimonial?.clientImageUrl
         },
         validationSchema,
         onSubmit: (values) => {
@@ -62,6 +64,7 @@ export default function AddUpdateBrandDialog({
                         feedbackText: values.feedbackText,
                         clientDesignation: values.clientDesignation,
                         clientName: values.clientName,
+                        clientImageUrl: values.clientImageUrl,
                         search: search,
                         page: page,
                         limit: limit,
@@ -76,6 +79,7 @@ export default function AddUpdateBrandDialog({
                     feedbackText: values.feedbackText,
                     clientDesignation: values.clientDesignation,
                     clientName: values.clientName,
+                    clientImageUrl: values.clientImageUrl,
                     search: search,
                     page: page,
                     limit: limit,
@@ -152,7 +156,20 @@ export default function AddUpdateBrandDialog({
                             focused={testimonial ?? false}
                             style={{ width: '100%', resize: 'vertical' }}
                         />
-                        
+                        <TextField
+                            sx={{ marginTop: '25px' }}
+                            id="clientImageUrl"
+                            name="clientImageUrl"
+                            label="Enter image URL"
+                            value={formik.values.clientImageUrl}
+                            onChange={formik.handleChange}
+                            error={formik.touched.clientImageUrl && Boolean(formik.errors.clientImageUrl)}
+                            helperText={formik.touched.clientImageUrl && formik.errors.clientImageUrl}
+                            fullWidth
+                            autoComplete="given-name"
+                            focused={testimonial ?? false}
+                            style={{ width: '100%', resize: 'vertical' }}
+                        />
                         <Typography sx={{ margin: '10px 0px' }} variant="h5" gutterBottom>
                             Enter Feedback Text
                         </Typography>

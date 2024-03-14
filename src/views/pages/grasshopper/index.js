@@ -64,6 +64,7 @@ const index = () => {
             // Clean up the temporary URL
             window.URL.revokeObjectURL(url);
         } catch (error) {
+            toast.error("Couldn't find the file on server!");
             console.error('Error downloading the .3dm file:', error);
             // Handle the error, e.g., show an error message to the user
         }

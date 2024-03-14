@@ -16,7 +16,11 @@ import {
     IconChartDonut3,
     IconQuestionMark,
     IconSuperscript,
-    IconHelp
+    IconHelp,
+    IconBuildingCommunity,
+    IconDatabase,
+    IconSchool,
+    IconCardboards
 } from '@tabler/icons';
 
 // constant
@@ -34,7 +38,11 @@ const icons = {
     IconChartDonut3,
     IconSuperscript,
     IconQuestionMark,
-    IconHelp
+    IconHelp,
+    IconBuildingCommunity,
+    IconDatabase,
+    IconSchool,
+    IconCardboards
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -125,6 +133,14 @@ const superAdminMenu = {
             breadcrumbs: false
         },
         {
+            id: 'Revit & DWG',
+            title: <FormattedMessage id="revit" />,
+            type: 'item',
+            url: '/revit-and-dwg',
+            icon: icons.IconCardboards,
+            breadcrumbs: false
+        },
+        {
             id: 'Testimonials',
             title: <FormattedMessage id="testimonials" />,
             type: 'item',
@@ -137,7 +153,7 @@ const superAdminMenu = {
             title: <FormattedMessage id="WebsiteData" />,
             type: 'item',
             url: '/website-data',
-            icon: icons.IconPlant,
+            icon: icons.IconDatabase,
             breadcrumbs: false
         },
         {
@@ -146,6 +162,22 @@ const superAdminMenu = {
             type: 'item',
             url: '/contact-us-queries',
             icon: icons.IconHelp,
+            breadcrumbs: false
+        },
+        {
+            id: 'Municipalities Requests',
+            title: <FormattedMessage id="municipalitiesRequests" />,
+            type: 'item',
+            url: '/municipality-requests',
+            icon: icons.IconBuildingCommunity,
+            breadcrumbs: false
+        },
+        {
+            id: 'Plan Instructions',
+            title: <FormattedMessage id="instructions" />,
+            type: 'item',
+            url: '/plan-instructions',
+            icon: icons.IconSchool,
             breadcrumbs: false
         }
         // {

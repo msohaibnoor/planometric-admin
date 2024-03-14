@@ -20,75 +20,51 @@ import {
 } from '@mui/material';
 const Transition = forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 import { updateTestimonial, addTestimonial } from '../../../../redux/testimonials/actions';
+import { addInstruction } from '../../../../redux/clientdata/actions';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddUpdateBrandDialog({
     openFeedback,
     setOpenFeedback,
-    page,
-    limit,
-    search,
-    testimonialId,
-    testimonial,
-    setTestimonialId,
+    instructionId,
+    instruction,
+    setInstruction,
+    setInstructionId,
     feedbackText
 }) {
-    // console.log(openFeedback, testimonialId, testimonial);
+    console.log( {instruction});
     const theme = useTheme();
     const dispatch = useDispatch();
     const [loader, setLoader] = useState(false);
     const validationSchema = Yup.object({
-        feedbackText: Yup.string().required('Feedback text is required!'),
-        // .matches(/^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$/, 'Invalid values'),
-        clientName: Yup.string().required('Name is required!').max(50, 'Name can not exceed 50 characters'),
-        clientDesignation: Yup.string().required('Designation is required!').max(200, 'Designation can not exceed 50 characters')
+        feedbackText: Yup.string().required('Instruction text is required!'),
     });
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            feedbackText: testimonial?.feedbackText,
-            clientName: testimonial?.clientName,
-            clientDesignation: testimonial?.clientDesignation,
+            feedbackText: instruction?.instruction,
         },
         validationSchema,
-        onSubmit: (values) => {
-            // console.log('values');
-            // console.log(values);
+        onSubmit: (values, {resetForm}) => {
             setLoader(true);
-            if (!testimonial) {
                 dispatch(
-                    addTestimonial({
-                        feedbackText: values.feedbackText,
-                        clientDesignation: values.clientDesignation,
-                        clientName: values.clientName,
-                        search: search,
-                        page: page,
-                        limit: limit,
+                    addInstruction({
+                        id: instructionId,
+                        instruction: values.feedbackText,
                         handleClose: handleClose,
                         setLoader: setLoader
                     })
                 );
-            }
-            dispatch(
-                updateTestimonial({
-                    id: testimonialId,
-                    feedbackText: values.feedbackText,
-                    clientDesignation: values.clientDesignation,
-                    clientName: values.clientName,
-                    search: search,
-                    page: page,
-                    limit: limit,
-                    handleClose: handleClose,
-                    setLoader: setLoader
-                })
-            );
+            
+            
         }
     });
-    // console.log(formik);
     const handleClose = () => {
         setLoader(false);
         setOpenFeedback(false);
+        // setInstruction(null);
+        // setInstructionId(null);
         formik.resetForm();
     };
 
@@ -103,60 +79,28 @@ export default function AddUpdateBrandDialog({
                 aria-labelledby="alert-dialog-slide-title1"
                 aria-describedby="alert-dialog-slide-description1"
             >
-                <DialogTitle id="alert-dialog-slide-title1">{feedbackText == '' ? 'Add Feedback' : 'Update Feedback'}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title1">{feedbackText == '' ? 'Add Instruction' : 'Update Instruction'}</DialogTitle>
                 <DialogContent>
                     <form autoComplete="off" onSubmit={formik.handleSubmit}>
-                        {/* <TextField
-                            rowsMin={4}
+                        
+                        <Typography sx={{ margin: '10px 0px' }} variant="h5" gutterBottom>
+                            Enter Instruction Text
+                        </Typography>
+                        <TextField
                             sx={{ marginTop: '25px' }}
                             id="feedbackText"
                             name="feedbackText"
-                            label="Enter feedback"
-                            type="textarea"
+                            label="Write instruction"
                             value={formik.values.feedbackText}
                             onChange={formik.handleChange}
                             error={formik.touched.feedbackText && Boolean(formik.errors.feedbackText)}
                             helperText={formik.touched.feedbackText && formik.errors.feedbackText}
                             fullWidth
                             autoComplete="given-name"
-                            focused={testimonial ?? false}
-                            style={{ width: '100%', resize: 'vertical' }}
-                        /> */}
-                        {/* <Box mt={3} display="flex" justifyContent="center" alignItems="center"> */}
-                        {/* <Paper elevation={3} style={{ padding: '20px', maxWidth: '600px', width: '100%' }}> */}
-                        <TextField
-                            sx={{ marginTop: '25px' }}
-                            id="clientName"
-                            name="clientName"
-                            label="Enter name"
-                            value={formik.values.clientName}
-                            onChange={formik.handleChange}
-                            error={formik.touched.clientName && Boolean(formik.errors.clientName)}
-                            helperText={formik.touched.clientName && formik.errors.clientName}
-                            fullWidth
-                            autoComplete="given-name"
-                            focused={testimonial ?? false}
+                            focused={instruction ?? false}
                             style={{ width: '100%', resize: 'vertical' }}
                         />
-                        <TextField
-                            sx={{ marginTop: '25px' }}
-                            id="clientDesignation"
-                            name="clientDesignation"
-                            label="Enter designation"
-                            value={formik.values.clientDesignation}
-                            onChange={formik.handleChange}
-                            error={formik.touched.clientDesignation && Boolean(formik.errors.clientDesignation)}
-                            helperText={formik.touched.clientDesignation && formik.errors.clientDesignation}
-                            fullWidth
-                            autoComplete="given-name"
-                            focused={testimonial ?? false}
-                            style={{ width: '100%', resize: 'vertical' }}
-                        />
-                        
-                        <Typography sx={{ margin: '10px 0px' }} variant="h5" gutterBottom>
-                            Enter Feedback Text
-                        </Typography>
-                        <TextareaAutosize
+                        {/* <TextareaAutosize
                             id="feedbackText"
                             name="feedbackText"
                             label="Enter feedback"
@@ -173,7 +117,7 @@ export default function AddUpdateBrandDialog({
                                 borderRadius: '10px',
                                 padding: '10px'
                             }}
-                        />
+                        /> */}
 
                         {/* </Paper>
                         </Box> */}

@@ -1,7 +1,7 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import loginIcon from '../assets/images/pages/login/loginIcon.png';
-import kwikTrustLogo from '../assets/images/kwikTrustLogo.svg';
+import planometricLogo from '../assets/images/LogoPlan.png';
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -17,7 +17,7 @@ const Logo = () => {
     const theme = useTheme();
 
     return (
-        <img style={{width:'190px'}} src={kwikTrustLogo} alt="KwikTrust" />
+        <img src={planometricLogo} alt="Planometric log" />
         // <p style={{fontSize:'20px'}}>Tabshura</p>
         /**
          * if you want to use image instead of svg uncomment following, and comment out <svg> element.

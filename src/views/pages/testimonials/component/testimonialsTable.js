@@ -84,7 +84,6 @@ const UserTable = ({ testimonialsList, page, limit, search, type }) => {
                         <TableCell sx={{ pl: 3 }}>Feedback</TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Designation</TableCell>
-                        <TableCell>Image</TableCell>
                         <TableCell align="center" sx={{ pr: 3 }}>
                             Actions
                         </TableCell>
@@ -100,7 +99,6 @@ const UserTable = ({ testimonialsList, page, limit, search, type }) => {
                                     <TableCell>{row?.feedbackText}</TableCell>
                                     <TableCell>{row?.clientName}</TableCell>
                                     <TableCell>{row?.clientDesignation}</TableCell>
-                                    <TableCell>{row.clientImageUrl.slice(0, 20) + '...'}</TableCell>
 
                                     <TableCell align="center" sx={{ pr: 3 }}>
                                         <IconButton>

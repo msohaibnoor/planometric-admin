@@ -25,8 +25,8 @@ const Login = () => {
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
                                         <Link to="#">
-                                            {/* <Logo /> */}
-                                            <h1>Planometric</h1>
+                                            <Logo />
+                                            {/* <h1>Planometric</h1> */}
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12}>

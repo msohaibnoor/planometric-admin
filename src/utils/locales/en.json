@@ -12,11 +12,13 @@
     "municipalities": "Municipalities",
     "projects": "Projects",
     "rhino": "Rhino Model",
+    "revit": "Revit & DWG",
     "grasshopper": "Grasshopper config",
     "plants": "Plants Database",
     "testimonials": "Testimonials",
     "websitedata": "WebsiteData",
     "queries": "Queries",
+    "municipalitiesRequests": "Municipality Requests",
     "trees": "Trees Database",
     "nftManagement": "NFT Management",
     "addNfts": "Add NFTS",
@@ -49,5 +51,6 @@
     "draftNFTS": "Draft NFTS",
     "dashboardNFTS": "Total NFTS",
     "dashboardBrands": "Total Brands",
-    "soldNFTS": "Sold NFTS"
+    "soldNFTS": "Sold NFTS",
+    "instructions": "Plan Instructions"
 }

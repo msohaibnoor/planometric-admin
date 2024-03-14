@@ -3,6 +3,7 @@ import authSaga from '../redux/auth/sagas';
 import municipalitiesSaga from '../redux/municipalities/sagas';
 import testimonialsSaga from '../redux/testimonials/sagas';
 import queriesSaga from '../redux/contactUsQueries/sagas';
+import requestsSaga from '../redux/municipalityRequests/sagas';
 import projectsSaga from '../redux/projects/sagas';
 import clientDataSaga from '../redux/clientdata/sagas';
 import superAdminDashboardSaga from '../redux/dashboard/sagas';
@@ -27,6 +28,7 @@ export default function* rootSaga() {
         testimonialsSaga(),
         projectsSaga(),
         clientDataSaga(),
-        queriesSaga()
+        queriesSaga(),
+        requestsSaga()
     ]);
 }

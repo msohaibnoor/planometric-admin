@@ -36,7 +36,6 @@ function* updateTestimonialRequest({ payload }) {
         feedbackText: payload?.feedbackText,
         clientName: payload?.clientName,
         clientDesignation: payload?.clientDesignation,
-        clientImageUrl: payload?.clientImageUrl
     };
     try {
         const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
@@ -90,7 +89,6 @@ function* addTestimonialRequest({ payload }) {
         feedbackText: payload?.feedbackText,
         clientName: payload?.clientName,
         clientDesignation: payload?.clientDesignation,
-        clientImageUrl: payload?.clientImageUrl
     };
     try {
         const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
