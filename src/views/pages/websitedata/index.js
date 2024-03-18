@@ -125,6 +125,8 @@ const WebsiteData = () => {
             <MainCard content={false}>
                 <form>
                     <Grid container flexDirection={'column'}>
+                    <h2 style={{marginLeft: "20px"}} >Welcome Text</h2>
+
                         <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
                             <TextareaAutosize
                                 id="businessDesc"
@@ -145,6 +147,8 @@ const WebsiteData = () => {
                                 }}
                             />
                         </Grid>
+                        <h2 style={{marginLeft: "20px"}} >Text under cost</h2>
+
                         <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
                             <TextareaAutosize
                                 id="costDescription"

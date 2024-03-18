@@ -47,6 +47,8 @@
 
     "dashboardUsers": "Total Users",
     "dashboardEvents": "Total Events",
+    "projectsCreated": "Projectes Created",
+    "totalMunicipalities": "Total Municipalities",
     "mintedNFTS": "Minted NFTS",
     "draftNFTS": "Draft NFTS",
     "dashboardNFTS": "Total NFTS",

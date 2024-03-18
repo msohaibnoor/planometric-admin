@@ -102,7 +102,7 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                                     >
                                         {row.id}{' '}
                                     </TableCell> */}
-                                    <TableCell>{row?.firstName}</TableCell>
+                                    <TableCell>{row?.firstName} {row?.lastName}</TableCell>
                                     <TableCell>{row?.email}</TableCell>
                                     <TableCell>{row?.companyName}</TableCell>
                                     <TableCell>{row.paymentMethod}</TableCell>

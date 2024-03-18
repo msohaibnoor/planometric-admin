@@ -36,7 +36,7 @@ const index = () => {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            const { data } = await axios.post(`${API_URL}admin/revit-upload`, formData, {
+            const { data } = await axios.post(`${API_URL}/admin/revit-upload`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -56,7 +56,7 @@ const index = () => {
         try {
             const formData = new FormData();
             formData.append('file', dwgFile);
-            const { data } = await axios.post(`${API_URL}admin/dwg-upload`, formData, {
+            const { data } = await axios.post(`${API_URL}/admin/dwg-upload`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -70,7 +70,7 @@ const index = () => {
 
     const handleDownload = async (fileName) => {
         try {
-            const response = await axios.get(`${API_URL}admin/files/download-grasshopper-script?fileToDownload=${fileName}`, {
+            const response = await axios.get(`${API_URL}/admin/files/download-grasshopper-script?fileToDownload=${fileName}`, {
                 responseType: 'arraybuffer',
                 headers: {
                     Authorization: `Bearer ${token}` // Replace YOUR_BEARER_TOKEN with the actual token

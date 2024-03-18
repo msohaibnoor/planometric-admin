@@ -32,7 +32,7 @@ const index = () => {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            const { data } = await axios.post(`${API_URL}admin/fileUpload`, formData, {
+            const { data } = await axios.post(`${API_URL}/admin/fileUpload`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }

@@ -42,14 +42,31 @@ const Dashboard = () => {
                     <Grid item xs={12}>
                         <Grid container spacing={gridSpacing}>
                             <Grid item lg={6} md={4} sm={6} xs={12}>
-                                 Dashboard coming soon
-                                {/* <UserCountCard
+                                 {/* Dashboard coming soon */}
+                                <UserCountCard
                                     primary={<FormattedMessage id="dashboardUsers" />}
-                                    secondary={dashboardData?.totalUsers ?? '...'}
+                                    secondary={dashboardData?.users ?? '...'}
                                     iconPrimary={AccountCircleTwoTone}
                                     color={theme.palette.primary.main}
-                                /> */}
+                                />
                             </Grid>
+                            <Grid item lg={6} md={4} sm={6} xs={12}>
+                                <EventCountCard
+                                    primary={<FormattedMessage id="projectsCreated" />}
+                                    secondary={dashboardData?.projects ?? '...'}
+                                    iconPrimary={EmojiEventsTwoToneIcon}
+                                    color={theme.palette.primary.main}
+                                />
+                            </Grid>
+                            <Grid item lg={6} md={4} sm={6} xs={12}>
+                                <BrandCountCard
+                                    primary={<FormattedMessage id="totalMunicipalities" />}
+                                    secondary={dashboardData?.municipalities ?? '...'}
+                                    iconPrimary={BrandingWatermarkTwoToneIcon}
+                                    color={theme.palette.primary.main}
+                                />
+                            </Grid>
+
                             {/* <Grid item lg={6} md={4} sm={6} xs={12}>
                                 <EventCountCard
                                     primary={<FormattedMessage id="dashboardEvents" />}
