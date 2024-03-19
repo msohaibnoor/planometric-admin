@@ -6,14 +6,14 @@ import { FormattedMessage } from 'react-intl';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, TextField, MenuItem } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, TextField, MenuItem, Checkbox, Typography, Stack } from '@mui/material';
 
 // animation
 const Transition = forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
-import { addMunicipality } from '../../../../redux/municipalities/actions';
+import { addMunicipality, updateMunicipality } from '../../../../redux/municipalities/actions';
 
-export default function AddRestrictedUserDialog({ open, setOpen, page, limit, search, type }) {
+export default function AddRestrictedUserDialog({ open, setOpen, page, limit, search, type, municipality }) {
     const theme = useTheme();
     const dispatch = useDispatch();
 
@@ -21,30 +21,37 @@ export default function AddRestrictedUserDialog({ open, setOpen, page, limit, se
         state: Yup.string().required('State Address is required!'),
         // .min(42, 'Invalid Wallet Address')
         // .max(42, 'Invalid Wallet Address'),
-        name: Yup.string().required('Name is required!')
+        name: Yup.string().required('Name is required!'),
+        availability: Yup.boolean().optional(),
     });
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            state: '',
-            name: ''
+            state: municipality?.state || "",
+            name: municipality?.name || "",
+            availability: municipality?.availability || false,
         },
         validationSchema,
         onSubmit: (values) => {
-            console.log({values})
-            dispatch(
-                addMunicipality({
-                    state: values.state,
-                    name: values.name,
-                    search: search,
-                    page: page,
-                    limit: limit,
-                    type: type,
-                    handleClose: handleClose
-                })
-            );
+            console.log({ values })
+            municipality ? dispatch(updateMunicipality({
+                id: municipality.id,
+                state: values.state,
+                name: values.name,
+                availability: values.availability,
+                handleClose: handleClose
+            })) :
+                dispatch(
+                    addMunicipality({
+                        state: values.state,
+                        name: values.name,
+                        availability: values.availability,
+                        handleClose: handleClose
+                    })
+                );
         }
     });
+    console.log(formik.values)
     const handleClose = () => {
         setOpen(false);
         formik.resetForm();
@@ -75,6 +82,7 @@ export default function AddRestrictedUserDialog({ open, setOpen, page, limit, se
                             helperText={formik.touched.state && formik.errors.state}
                             fullWidth
                             autoComplete="given-name"
+                            focused={municipality}
                         />
                         <TextField
                             sx={{ marginTop: '25px' }}
@@ -87,7 +95,24 @@ export default function AddRestrictedUserDialog({ open, setOpen, page, limit, se
                             helperText={formik.touched.name && formik.errors.name}
                             fullWidth
                             autoComplete="given-name"
+                            focused={municipality}
+
                         />
+                        <Stack sx={{ marginTop: '25px' }} direction="row" alignItems="center" spacing={1}>
+
+                            <Typography
+                                gutterBottom
+                                variant='p'
+                            >
+                                Availability
+                            </Typography>
+                            <Checkbox
+                                sx={{ marginTop: '15px' }}
+                                checked={formik.values.availability}
+                                onChange={formik.handleChange}
+                                name="availability"
+                            />
+                        </Stack>
                     </form>
                 </DialogContent>
                 <DialogActions sx={{ pr: 2.5 }}>
@@ -108,7 +133,7 @@ export default function AddRestrictedUserDialog({ open, setOpen, page, limit, se
                             formik.handleSubmit();
                         }}
                     >
-                        Add
+                        {municipality ? 'Update' : 'Add'}
                     </Button>
                 </DialogActions>
             </Dialog>

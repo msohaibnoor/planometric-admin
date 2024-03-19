@@ -4,7 +4,8 @@ import {
     DELETE_MUNICIPALITY,
     ADD_GUEST_USER,
     ADD_MUNICIPALITy,
-    CHANGE_USER_STATUS
+    CHANGE_USER_STATUS,
+    UPDATE_MUNICIPALITy
 } from './constants';
 
 export const getAllMunicipalities = (data) => {
@@ -51,6 +52,13 @@ export const changeUserStatus = (data) => {
 export const addMunicipality = (data) => {
     return {
         type: ADD_MUNICIPALITy,
+        payload: data
+    };
+};
+
+export const updateMunicipality = (data) => {
+    return {
+        type: UPDATE_MUNICIPALITy,
         payload: data
     };
 };

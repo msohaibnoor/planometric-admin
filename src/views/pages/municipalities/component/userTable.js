@@ -20,6 +20,8 @@ import {
 import BlockIcon from '@mui/icons-material/Block';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteUserDialog from './DeleteUserDialog';
 import moment from 'moment';
@@ -28,6 +30,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // import Tooltip from '@mui/material/Tooltip';
 import { changeUserStatus } from 'redux/users/actions';
 import { padding } from '@mui/system';
+import AddRestrictedUserDialog from './AddRestrictedUserDialog';
 
 const UserTable = ({ usersList, page, limit, search, type }) => {
     const theme = useTheme();
@@ -35,6 +38,9 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [openRestricted, setRestrictedOpen] = useState(false);
+    const [municipality, setMunicipality] = useState({});
+    const [municipalityId, setMunicipalityId] = useState(null);
     const [userId, setUserId] = useState();
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
@@ -51,6 +57,16 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
     };
     return (
         <TableContainer>
+            <AddRestrictedUserDialog
+              municipality={municipality}
+              municipalityId={municipalityId}
+              setOpen={setRestrictedOpen}
+              open={openRestricted}
+              search={search}
+              page={page}
+              limit={limit}
+              type={type}
+            />
             <DeleteUserDialog setOpen={setOpen} open={open} userId={userId} page={page} limit={limit} search={search} type={type} />
 
             <Table>
@@ -161,7 +177,24 @@ const UserTable = ({ usersList, page, limit, search, type }) => {
                                             className="customMenuClass"
                                         >
                                            
-                                            
+                                           <MenuItem
+                                                onClick={() => {
+                                                    // setBrandName(selectedRow.name);
+                                                    // setBrandId(selectedRow.id);
+                                                    // setAddUpdateOpen(true);
+                                                    setRestrictedOpen(true);
+                                                    setMunicipality(selectedRow);
+                                                    setMunicipalityId(selectedRow.id);
+                                                    // handleClose();
+                                                }}
+                                            >
+                                                <div className="actionItem">
+                                                    <IconButton color="primary" aria-label="Edit" size="large" sx={{ padding: '0px' }}>
+                                                        <EditOutlinedIcon sx={{ fontSize: '1.5rem' }} />
+                                                    </IconButton>
+                                                    <p>Edit</p>
+                                                </div>
+                                            </MenuItem>   
                                             <MenuItem
                                                 onClick={() => {
                                                     setOpen(true);

@@ -10,7 +10,8 @@ import {
     DELETE_MUNICIPALITY,
     CHANGE_USER_STATUS,
     ADD_RESTRICTED_USER,
-    ADD_MUNICIPALITy
+    ADD_MUNICIPALITy,
+    UPDATE_MUNICIPALITy
 } from './constants';
 import { SetNotification } from 'shared/helperMethods/setNotification';
 
@@ -83,11 +84,37 @@ function* addGuestUserRequest({ payload }) {
 function* addMunicipalityRequest({ payload }) {
     let data = {
         name: payload.name,
-        state: payload.state
+        state: payload.state,
+        availability: payload.availability
     };
     try {
         const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
         const response = yield axios.post(`admin/municipalities/add`, data, headers);
+        yield put(
+            getAllMunicipalities({
+                search: payload.search,
+                page: payload.page,
+                limit: payload.limit,
+                type: payload.type
+            })
+        );
+        payload.handleClose();
+        yield SetNotification('success', response.data.message);
+    } catch (error) {
+        yield sagaErrorHandler(error.response.data.data);
+    }
+}
+
+function* updateMunicipalityRequest({ payload }) {
+    let data = {
+        id: payload.id,
+        name: payload.name,
+        state: payload.state,
+        availability: payload.availability
+    };
+    try {
+        const headers = { headers: { Authorization: `Bearer ${yield select(makeSelectAuthToken())}` } };
+        const response = yield axios.put(`admin/municipalities/update`, data, headers);
         yield put(
             getAllMunicipalities({
                 search: payload.search,
@@ -108,6 +135,10 @@ export function* watchAddGuestUser() {
 }
 export function* watchAddMunicipality() {
     yield takeLatest(ADD_MUNICIPALITy, addMunicipalityRequest);
+}
+
+export function* watchUpdateMunicipality() {
+    yield takeLatest(UPDATE_MUNICIPALITy, updateMunicipalityRequest);
 }
 
 function* deleteMunicipalityRequest({ payload }) {
@@ -162,6 +193,7 @@ export default function* usersSaga() {
         fork(watchDeleteMunicipality),
         fork(watchChangeStatus),
         fork(watchAddRestrictedUser),
-        fork(watchAddMunicipality)
+        fork(watchAddMunicipality),
+        fork(watchUpdateMunicipality)
     ]);
 }

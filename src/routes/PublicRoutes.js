@@ -33,7 +33,7 @@ const PublicRoutes = {
             element: <ForgetPassword />
         },
         {
-            path: '/resetpassword',
+            path: '/reset-password',
             element: <ResetPassword />
         }
     ]
