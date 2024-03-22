@@ -41,26 +41,26 @@ const index = () => {
     const handleDownload = async () => {
         try {
             const response = await axios.get(`${API_URL}/admin/files/download-grasshopper-script?fileToDownload=trees`, {
-                responseType: 'arraybuffer',
+                responseType: 'json',
                 headers: {
                     Authorization: `Bearer ${token}` // Replace YOUR_BEARER_TOKEN with the actual token
                 }
             });
-            console.log(response.data);
-            const blob = new Blob([response.data], { type: 'application/octet-stream' });
+            const byteCharacters = atob(response?.data?.data?.pdfFile);
+            const byteNumbers = new Array(byteCharacters.length);
 
-            // Create a temporary URL for the blob
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'application/pdf' });
             const url = window.URL.createObjectURL(blob);
-
-            // Create a hidden anchor tag and trigger the download
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
-            a.download = 'trees-database.csv'; // Replace 'file.3dm' with the desired filename
+            a.download = response.data.data.fileName; 
             document.body.appendChild(a);
             a.click();
-
-            // Clean up the temporary URL
             window.URL.revokeObjectURL(url);
         } catch (error) {
             toast.error("Couldn't find the file on server!");
