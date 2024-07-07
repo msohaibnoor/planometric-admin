@@ -78,6 +78,7 @@ const WebsiteData = () => {
 
     const validationSchema = Yup.object({
         planometricPlanFee: Yup.number().required('Fee is required!').min(1, 'Invalid Event Name'),
+        planometricTrialFee: Yup.number().required('Fee is required!').min(1, 'Invalid Event Name'),
         businessDesc: Yup.string().required('Field is required!').min(1, 'Invalid description').max(500, 'Invalid description'),
         businessInformation: Yup.string().required('Field is required!').min(1, 'Invalid description').max(500, 'Invalid description'),
         costDescription: Yup.string().required('Field is required!').min(1, 'Invalid description').max(500, 'Invalid description')
@@ -98,10 +99,16 @@ const WebsiteData = () => {
                     businessInformation: values.businessInformation,
                     costDescription: values.costDescription,
                     planometricPlanFee: Number(values.planometricPlanFee),
+                    planometricTrialFee: Number(values.planometricTrialFee),
                     stripeText: values.stripeText,
                     createPlanInstruction1: values.createPlanInstruction1,
+                    trialPlanInstruction1: values.trialPlanInstruction1,
                     createPlanInstruction2: values.createPlanInstruction2,
                     createPlanInstruction3: values.createPlanInstruction3,
+                    popupMessageTryAndSave1: values.popupMessageTryAndSave1,
+                    popupMessageTryAndSave2: values.popupMessageTryAndSave2,
+                    popupMessageTryAndSave3: values.popupMessageTryAndSave3,
+                    
                     howItWorksStep1: values.howItWorksStep1,
                     howItWorksStep1Green: values.howItWorksStep1Green,
                     howItWorksStep2: values.howItWorksStep2,
@@ -273,6 +280,128 @@ const WebsiteData = () => {
                                 }}
                             />
                         </Grid>
+                        <h2 style={{marginLeft: "20px"}}>Try & Save Instructions</h2>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="trialPlanInstruction1"
+                                name="trialPlanInstruction1"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.trialPlanInstruction1}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="trialPlanInstruction2"
+                                name="trialPlanInstruction2"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.trialPlanInstruction2}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="trialPlanInstruction3"
+                                name="trialPlanInstruction3"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.trialPlanInstruction3}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <h2 style={{marginLeft: "20px"}}>Try & Save Popup Text</h2>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="popupMessageTryAndSave1"
+                                name="popupMessageTryAndSave1"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.popupMessageTryAndSave1}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="popupMessageTryAndSave2"
+                                name="popupMessageTryAndSave2"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.popupMessageTryAndSave2}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextareaAutosize
+                                id="popupMessageTryAndSave3"
+                                name="popupMessageTryAndSave3"
+                                label="Enter feedback"
+                                aria-label="text area"
+                                // rowsMin={4}
+                                placeholder="Start typing here..."
+                                value={formik.values?.popupMessageTryAndSave3}
+                                onChange={formik.handleChange}
+                                style={{
+                                    width: '100%',
+                                    resize: 'vertical',
+                                    marginBottom: '10px',
+                                    border: '2px solid #2196f3',
+                                    borderRadius: '10px',
+                                    padding: '10px'
+                                }}
+                            />
+                        </Grid>
                         <h2 style={{marginLeft: "20px"}}>How It works (steps)</h2>
                         <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
                             <TextareaAutosize
@@ -404,6 +533,22 @@ const WebsiteData = () => {
                                 value={formik?.values?.planometricPlanFee}
                                 onChange={formik.handleChange}
                                 error={formik.touched.planometricPlanFee && Boolean(formik.errors.planometricPlanFee)}
+                                // helperText={formik.touched.name && formik.errors.name}
+                                fullWidth
+                                autoComplete="given-name"
+                                focused={true}
+                            />
+                        </Grid>
+                        <h2 style={{marginLeft: "20px"}}>Planometric fee for Try & Save</h2>
+
+                        <Grid item xs={6} pt={4} pr={4} sx={{ padding: '10px' }}>
+                            <TextField
+                                id="planometricTrialFee"
+                                name="planometricTrialFee"
+                                label="Enter fee"
+                                value={formik?.values?.planometricTrialFee}
+                                onChange={formik.handleChange}
+                                error={formik.touched.planometricTrialFee && Boolean(formik.errors.planometricTrialFee)}
                                 // helperText={formik.touched.name && formik.errors.name}
                                 fullWidth
                                 autoComplete="given-name"
